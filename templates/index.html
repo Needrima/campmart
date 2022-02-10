@@ -1,122 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socialize | Home</title> 
-    <!--Fontawesome CDN-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Shop it | Home</title>
+
+    <link rel="stylesheet" href="../pub/css/style.css">
+
+    <!--Font awesome cdn-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <!---->
-    <link rel="stylesheet" href="../view/public/index.css">
 </head>
 <body>
-<!--Navigation section-->
-    <nav>
-        <div class="container">
-            <h2 class="log">
-                Socialize
-            </h2> 
-            
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="search" placeholder="Search for other users"> 
-            </div>
-            <div class="rank">
-                <label class="btn btn-primary" for="#">Rank</label>
 
-                <div class="profile-picture">
-                    <img src="../view/images/person1.jpg" alt="">
-                </div>
+    <section id="header">
+        <a href="#">
+            <img src="../pub/images/static/logo.png" alt="">
+        </a>
+
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="far fa-shopping-cart"></i></a></li>
+            </ul>
+        </div>
+    </section> 
+    
+    <section id="hero">
+        <h4>Trade-in-offer</h4>
+        <h2>Super value deals</h2>
+        <h1>On all products</h1>
+        <p>Save more with coupons and 70% off! </p>
+        <button>Shop now</button>
+    </section>
+
+    <section id="feature" class="section-p1 ">
+        <div class="fe-box">
+            <img src="../pub/images/static/feature.png" alt="">
+            <h6>Free Shipping</h6>
+        </div>
+
+        <div class="fe-box">
+            <img src="../pub/images/static/feature.png" alt="">
+            <h6>Online Order</h6>
+        </div>
+
+        <div class="fe-box">
+            <img src="../pub/images/static/feature.png" alt="">
+            <h6>Save Money</h6>
+        </div>
+
+        <div class="fe-box">
+            <img src="../pub/images/static/feature.png" alt="">
+            <h6>Promotions</h6>
+        </div>
+
+        <div class="fe-box">
+            <img src="../pub/images/static/feature.png" alt="">
+            <h6>Happy Sales</h6>
+        </div>
+
+        <div class="fe-box">
+            <img src="../pub/images/static/feature.png" alt="">
+            <h6>F24/7 Support</h6>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Featured Products</h2>
+        <p>Summer Collection New Horden Designs</p>
+
+        <div class="pro-container">
+            <div class="pro">
+                <img src="" alt="">
             </div>
         </div>
-    </nav>
-    <!--Navigation section end-->
+    </section>    
 
-    <!--Main section -->
-        <main>
-            <div class="container">
-                <!--Left-->
-                <div class="left">
-                    <!--Profile-->
-                    <a href="#" class="profile">
-                        <div class="profile-picture">
-                            <img src="../view/images/person1.jpg" alt="">
-                        </div>
-                        <div class="handle">
-                            <h4>Jackie Chan</h4>
-                            <p class="text-muted">
-                                @super_jackie
-                            </p>
-                        </div>
-                    </a>
-                    <!--Profile end-->
 
-                    <!--Sidebar-->
-                    <div class="sidebar">
-                        <a class="menu-item active">
-                            <span><i class="fa fa-home"></i></span> <h3>Home</h3>
-                        </a>
-
-                        <a class="menu-item" id="notification">
-                            <span><i class="fa fa-bell"><small class="notification-count">9+</small></i></span> <h3>Activity</h3>
-                            <!--Notification popup-->
-                            <div class="notification-popup">
-                                <div>
-                                    <div class="profile-picture">
-                                        <img src="../view/images/person2.jpg" alt="">
-                                    </div>
-    
-                                    <div class="notification-body">
-                                        <b>Jet Li</b> commented on your post
-                                        <small class="text-muted">13 MINUTES AGO</small>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="profile-picture">
-                                        <img src="../view/images/person3.png" alt="">
-                                    </div>
-    
-                                    <div class="notification-body">
-                                        <b>Keanu Reeves</b> commented on your post
-                                        <small class="text-muted">13 MINUTES AGO</small>
-                                    </div>
-                                </div>
-                                                                
-                            </div>
-                        </a> 
-
-                        <a class="menu-item">
-                            <span><i class="fa fa-palette"></i></span> <h3>Theme</h3>
-                        </a>
-
-                        <a class="menu-item">
-                            <span><i class="fa fa-gear"></i></span> <h3>Settings</h3>
-                        </a>
-                    </div>
-                    <!--Sidebar end-->
-
-                    <!--Button under sidebar-->
-                    <label for="create-post" class="btn btn-primary">
-                        Create Post
-                    </label>
-                    <!--Button under sidebar end-->
-
-                </div>
-                <!--Left end-->
-
-                <!--Middle-->
-                <div class="middle">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nihil eum sit asperiores natus porro cumque mollitia exercitationem repellendus. Distinctio esse labore, accusamus id molestias reiciendis optio neque. Voluptates, ipsa.
-                </div>
-                
-                <!--Right-->
-                <div class="right">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni aperiam facilis perferendis necessitatibus, obcaecati debitis adipisci error. Dolores, est qui. Ratione, magni. Molestiae perferendis odio hic earum ducimus, omnis fugit.
-                </div>
-            </div>
-        </main>
-    <!--Main section end-->
+    <script src="../pub/js/script.js"></script>
 </body>
 </html>

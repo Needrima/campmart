@@ -538,6 +538,35 @@ footer .copyright {
 }
 
 /*Shop page*/
+#search {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#search .form {
+    display: flex;
+    width:100%;
+}
+
+#search input {
+    height: 3.125rem;
+    padding: 0 1.25rem;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none;
+}
+
+#search button {
+    background-color: #088178;
+    color: white;
+    white-space: nowrap;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
 
 #page-header {
     background-image: url("../images/static/shop-hero.jpeg");

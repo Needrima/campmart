@@ -339,7 +339,7 @@ body {
 }
 
 #sm-banner .banner-box {
-    background-image: url("../images/static/ads1.jpg");
+    background-image: url("../images/static/ads1.png");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -353,23 +353,26 @@ body {
 }
 
 #sm-banner .banner-box2 {
-    background-image: url("../images/static/ads2.jpg");
+    background-image: url("../images/static/ads2.png");
 }
 
 #sm-banner h4 {
     font-size: 20px;
     font-weight: 300;
+    color: white;
 }
 
 #sm-banner h2 {
     font-size: 28px;
     font-weight: 800;
+    color: white;
 }
 
 #sm-banner span {
     font-size: 14px;
     font-weight: 500;
     padding-bottom: 15px;
+    color: white;
 }
 
 #sm-banner .banner-box button {
@@ -390,7 +393,7 @@ body {
 }
 
 #banner3 .banner-box {
-    background-image: url("../images/static/ads3.jpg");
+    background-image: url("../images/static/ads3.png");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -409,7 +412,7 @@ body {
 }
 
 #banner3 .banner-box3 {
-    background-image: url("../images/static/ads1.jpg");
+    background-image: url("../images/static/ads5.png");
 }
 
 #banner3 h2 {
@@ -538,35 +541,6 @@ footer .copyright {
 }
 
 /*Shop page*/
-#search {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-#search .form {
-    display: flex;
-    width:100%;
-}
-
-#search input {
-    height: 3.125rem;
-    padding: 0 1.25rem;
-    font-size: 14px;
-    width: 100%;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    outline: none;
-}
-
-#search button {
-    background-color: #088178;
-    color: white;
-    white-space: nowrap;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-}
 
 #page-header {
     background-image: url("../images/static/shop-hero.jpeg");
@@ -581,7 +555,7 @@ footer .copyright {
 }
 
 #page-header h2, #page-header p {
-    color: #fff;
+    color: #000;
 }
 
 #pagination {
@@ -675,6 +649,11 @@ footer .copyright {
 #prodetails .single-pro-details div ul {
     margin: 10px 0 0 17px;
     font-weight: 700;
+}
+
+/*Blog page*/
+#page-header.blog-header {
+    background-image: url("../images/static/blog-header.png");
 }
 
 /* pages media query */ 

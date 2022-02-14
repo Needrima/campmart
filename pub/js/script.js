@@ -1,6 +1,6 @@
-const bar = document.getElementById('bar');
-const nav = document.getElementById('navbar');
-const close = document.getElementById('close');
+const bar = document.querySelector('#bar');
+const nav = document.querySelector('#navbar');
+const cl = document.querySelector('#close');
 
 if (bar) {
     bar.addEventListener('click', () => {
@@ -8,8 +8,8 @@ if (bar) {
     })
 } 
 
-if (close) {
-    bar.addEventListener('click', () => {
+if (cl) {
+    cl.addEventListener('click', () => {
         nav.classList.remove('active');
     })
 }

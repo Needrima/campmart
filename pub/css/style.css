@@ -557,6 +557,10 @@ footer .copyright {
 }
 
 #page-header h2, #page-header p {
+    color: #fff;
+}
+
+#page-header.contact-color h2, #page-header.contact-color p {
     color: #000;
 }
 
@@ -725,6 +729,11 @@ footer .copyright {
 /* About Page */
 #page-header.about-header {
     background-image: url("../images/static/about-header2.jpeg");
+    background-position: top 30% right 30%;
+}
+
+#page-header.contact-header {
+    background-image: url("../images/static/contact-header.png");
     background-position: top 30% right 30%;
 }
 

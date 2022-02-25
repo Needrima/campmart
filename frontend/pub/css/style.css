@@ -72,6 +72,20 @@ body {
     width: 100%;
 }
 
+.tandc {
+    display: none;
+    padding: 10px 20px;
+}
+
+.tandc ul {
+    margin-left: 12px;
+    padding: 10px;
+}
+
+.tandc ul li {
+    list-style: none;
+}
+
 /*Header start*/
 
 #header {

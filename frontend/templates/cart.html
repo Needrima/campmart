@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Campmart | Contact Us</title>
+    <title>Campmart | Cart</title>
 
     <link rel="stylesheet" href="../pub/css/style.css">
 
@@ -56,18 +56,18 @@
                         <td><a href="#"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="../pub/images/products/roundneck 3.jpeg" alt=""></td>
                         <td>Plain Roundneck T-shirt</td>
-                        <td>NGN5000</td>
-                        <td><input type="number" value="1"></td>
-                        <td>NGN5000</td>
+                        <td id="price">NGN5000</td>
+                        <td><input type="number" value="1" id="qty"></td>
+                        <td id="s-total">NGN5000</td>
                     </tr> 
     
                     <tr>
                         <td><a href="#"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="../pub/images/products/tshirt 1.jpeg" alt=""></td>
                         <td>Checkered T-shirt</td>
-                        <td>NGN5000</td>
-                        <td><input type="number" value="1"></td>
-                        <td>NGN5000</td>
+                        <td id="price">NGN5000</td>
+                        <td><input type="number" value="1" id="qty"></td>
+                        <td id="s-total">NGN5000</td>
                     </tr>
                 </form> 
             </tbody>
@@ -90,17 +90,17 @@
             <table>
                 <tr>
                     <td>Cart Subtotal</td>
-                    <td>NGN10000</td>
+                    <td id="cartSubtotal">NGN10000</td>
                 </tr>
 
                 <tr>
                     <td>Shipping</td>
-                    <td>Free</td>
+                    <td id="shipping-fee">Free</td>
                 </tr>
 
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>NGN10000</strong></td>
+                    <td><strong id="orderTotal">NGN10000</strong></td>
                 </tr> 
             </table>
             <button class="normal" type="submit">Place Order</button>
@@ -144,7 +144,7 @@
             <a href="#">Track My Order</a> -->
         </div>
  
-        <div class="col install">
+        <!-- <div class="col install">
             <h4>Install Mobile App</h4>
             <p>From App Store or Google Play</p>
             <div class="row">
@@ -157,7 +157,7 @@
             </div>
             <p>Secured Payment Gateways</p>
             <img src="../pub/images/static/debit-cards.png" alt="">             
-        </div>
+        </div> -->
 
         <div class="copyright">
             <p>&copy; 2022, Campmart, All rights reserved.</p>
@@ -165,5 +165,70 @@
     </footer>
 
     <script src="../pub/js/script.js"></script>
+
+    <script>
+        // qty, prices and subtotals have the same length
+        let qty = document.querySelectorAll('#qty');
+        let prices = document.querySelectorAll('#price');
+        let subtotals = document.querySelectorAll('#s-total');
+
+        let cartSubtotal = document.querySelector('#cartSubtotal');
+
+        let shippingFee = document.querySelector('#shipping-fee').textContent;
+        
+        let orderTotal = document.querySelector('#orderTotal');
+
+        function getOrderTotal() {// order subtotal = cart subtotal + shipping fee
+            if(shippingFee.trim().toLowerCase() === 'free') {
+                orderTotal.textContent = cartSubtotal.textContent;
+            }else {
+                let shippingFeePrice = parseInt(shippingFee.slice(3));
+                console.log(shippingFeePrice)
+                let cartFee = parseInt(cartSubtotal.textContent.slice(3));
+                console.log(cartFee)
+
+                let total = shippingFeePrice + cartFee;
+
+                orderTotal.textContent = 'NGN'+total.toString()
+            }
+        }
+        getOrderTotal();
+
+        for (let i = 0; i < qty.length; i++) {
+            qty[i].addEventListener('input', () => {
+                // check if quantity is zero or negative
+                if (qty[i].value < 1) {
+                    qty[i].value = 1;
+                }
+
+                getSubtotal(prices[i].textContent, qty[i].value, subtotals[i]); 
+                getCartSubtotal();
+                getOrderTotal(); 
+            })
+        }
+
+        function getSubtotal(price, qty, subtotal) { // item subtotal
+            //get number part in price and convert to number type
+            // NGN5000 give 5000 as type number
+            let p = parseInt(price.slice(3)); 
+
+            // multiply the value by the quantity
+            let itemSubtotal = p * qty;
+
+            // change value of itemSubtotal to string and asign the subtotal to it
+            subtotal.textContent = 'NGN'+itemSubtotal.toString();
+        }
+
+        function getCartSubtotal() { // cart subtotal
+            let total = 0;
+            // loop through item subtotals and add their values to total variable
+            subtotals.forEach(s => {
+                let p = parseInt(s.textContent.slice(3))
+                total += p
+            })
+
+            cartSubtotal.textContent = 'NGN'+total.toString();
+        }
+    </script>
 </body>
 </html> 

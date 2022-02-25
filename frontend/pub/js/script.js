@@ -14,3 +14,13 @@ if (cl) {
     })
 }
 
+let newsletterForm = document.querySelector('#newsletter-form');
+
+function newsletterSub(evt) {
+    if (newsletterForm.value === '') {
+        alert('You did not input your E-mail!');
+        return false;
+    }
+
+    return true;
+}

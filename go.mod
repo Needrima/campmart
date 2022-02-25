@@ -1,4 +1,4 @@
-module socialize
+module campmart
 
 go 1.16
 

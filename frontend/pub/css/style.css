@@ -72,17 +72,19 @@ body {
     width: 100%;
 }
 
-.tandc {
+/*Hidden sections(Terms and conditions, Privacy policy and delivery information*/
+
+.tandc, .privacy, .delInfo {
     display: none;
     padding: 10px 20px;
 }
 
-.tandc ul {
+.tandc ul, .delInfo ul {
     margin-left: 12px;
     padding: 10px;
 }
 
-.tandc ul li {
+.tandc ul li, .delInfo ul li {
     list-style: none;
 }
 

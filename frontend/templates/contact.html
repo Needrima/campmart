@@ -8,6 +8,12 @@
     <!--Font awesome cdn-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <!---->
+
+    <!--Jquery ui css cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css">
+    <!---->
 </head>
 <body>
 
@@ -150,9 +156,9 @@
         <div class="col">
             <h4>About</h4>
             <a href="About.html">About Us</a>
-            <a href="#">Delivery Information</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
+            <a class="di">Delivery Information</a>
+            <a class="pp">Privacy Policy</a>
+            <a class="tc">Terms & Conditions</a>
             <a href="contact.html">Contact Us</a>
         </div>
 
@@ -186,6 +192,120 @@
         </div>
     </footer>
 
+    <section class="tandc" title="Terms and Conditions">
+        <div>
+            <h3>As a seller</h3>
+            <ul>
+                <li>Term and Condition 1</li>
+                <li>Term and Condition 2</li>
+                <li>Term and Condition 3</li>
+                <li>Term and Condition 4</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>As a Buyer</h3>
+            <ul>
+                <li>Term and Condition 1</li>
+                <li>Term and Condition 2</li>
+                <li>Term and Condition 3</li>
+                <li>Term and Condition 4</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="privacy" title="Privacy Policy">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum cumque totam inventore vel iste dignissimos dolorem odit necessitatibus. Doloremque pariatur corporis nisi, dolorem placeat deserunt earum deleniti quas facilis quos!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta eius tempora, eaque earum debitis dolor aspernatur quod officiis eum doloremque voluptates ducimus voluptas blanditiis vero at quas quasi, reprehenderit labore?
+    </section>
+
+    <section class="delInfo" title="Delivery Information">
+        <h3>How do we deliver your package ?</h3>
+        <ul>
+            <li>Step 1</li>
+            <li>Step 2</li>
+            <li>Step 3</li>
+            <li>Step 4</li>
+        </ul>
+    </section>
+
+    <!--Vanilla JS-->
     <script src="../pub/js/script.js"></script>
+    <!---->
+
+    <!--Jquery ui js cdn-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!---->
+
+    <!--Jquery script-->
+    <script>
+        $('.tc').click(function() {
+            $('.tandc').css('display', 'block');
+
+            $('.tandc').dialog({
+                draggable: false,
+                modal: true,
+                resizable:true,
+                height: 400,
+                width: 300,
+
+                buttons: [
+                    {
+                        text: "I Agree",
+                        icon: 'ui-icon-check',
+                        click: function() {
+                            $(this).dialog('close')
+                        },
+                    },
+                ]
+            });
+        })
+
+        $('.pp').click(function() {
+            $('.privacy').css('display', 'block');
+
+            $('.privacy').dialog({
+                draggable: false,
+                modal: true,
+                resizable:true,
+                height: 300,
+                width: 500,
+
+                buttons: [
+                    {
+                        text: "Ok",
+                        icon: 'ui-icon-check',
+                        click: function() {
+                            $(this).dialog('close')
+                        },
+                    },
+                ]
+            });
+        })
+
+        $('.di').click(function() {
+            $('.delInfo').css('display', 'block');
+
+            $('.delInfo').dialog({
+                draggable: false,
+                modal: true,
+                resizable:true,
+                height: 300,
+                width: 300,
+
+                buttons: [
+                    {
+                        text: "Ok",
+                        icon: 'ui-icon-check',
+                        click: function() {
+                            $(this).dialog('close')
+                        },
+                    },
+                ]
+            });
+        })
+    </script>
+    <!---->
 </body>
-</html> 
+</html>

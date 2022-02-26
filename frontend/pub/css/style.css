@@ -137,9 +137,17 @@ body {
     left: 20px;
 }
 
+#navbar a i {
+    cursor: pointer;
+}
+
 #mobile {
     display: none;
     align-items: center;
+}
+
+#mobile i {
+    cursor: pointer;
 }
 
 #close {
@@ -506,6 +514,10 @@ footer .col {
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
+}
+
+footer .col .di, footer .col .pp, footer .col .tc {
+    cursor: pointer;
 }
 
 footer .logo {
@@ -1149,6 +1161,12 @@ footer .copyright {
 
     #form-details form {
         width: 50%;
+    }
+
+    /*checkout page*/
+    
+    #checkout form {
+        width: 80%;
     }
 }
 

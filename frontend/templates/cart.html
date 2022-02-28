@@ -263,7 +263,9 @@
             orderTotal.textContent = 'NGN'+orderValue.toString()
         }
         initValues();
-    
+
+        // reset quantity to 1 if it is less than one and
+        // call initValues() whenever quantity is changed 
         qtyInput.forEach(qty => {
             qty.addEventListener('input', () => {
                 // alert('Hellow world')

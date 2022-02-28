@@ -829,12 +829,16 @@ footer .copyright {
     margin-left: 12px;
 }
 
+#side-content div {
+    margin-bottom: 20px;
+}
+
 #side-content img {
    width: 100%;
 }
 
 #side-content h4 a{
-    color: #088178;
+    color: black;
     text-decoration: none;
     transform: 1s;
 }
@@ -1250,6 +1254,30 @@ footer .copyright {
 
     #form-details form {
         width: 50%;
+    }
+    
+    /*single-blog page*/
+    #blog-body {
+        flex-direction: column;
+    }
+
+    #blog-content, #side-content {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #side-content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #side-content div {
+        padding: 10px;
+        width: 35%;
+    }
+
+    #side-content img {
+        height: 100px;
     }
 
     /*checkout page*/

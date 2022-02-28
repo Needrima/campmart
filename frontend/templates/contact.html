@@ -77,14 +77,14 @@
         </div>
     </section>
 
-    <section id="form-details">
+    <section id="form-details" onsubmit="return checkContactMsg()">
         <form action="">
             <span>LEAVE A MESSAGE</span>
             <h2>Drop your suggestions and opinions as we would love to hear from you</h2>
-            <input type="text" placeholder="Your Name">
-            <input type="text" placeholder="Your E-mail">
-            <input type="text" placeholder="Subject">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="text" id="senderName" placeholder="Your Name *">
+            <input type="text" id="senderEmail" placeholder="Your E-mail *">
+            <input type="text" id="msgSubject" placeholder="Subject *">
+            <textarea name="" id="msg" cols="30" rows="10" placeholder="Your Message *"></textarea>
             <button class="normal" type="submit">Send Message</button>
         </form>
 

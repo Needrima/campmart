@@ -1,3 +1,4 @@
+// all pages script
 const bar = document.querySelector('#bar');
 const nav = document.querySelector('#navbar');
 const cl = document.querySelector('#close');
@@ -16,7 +17,7 @@ if (cl) {
 
 let newsletterForm = document.querySelector('#newsletter-form');
 
-function newsletterSub(evt) {
+function newsletterSub() {
     if (newsletterForm.value === '') {
         alert('You did not input your E-mail!');
         return false;
@@ -24,7 +25,75 @@ function newsletterSub(evt) {
 
     return true;
 }
-// cart.html 
+// all pages script end
+
+//shop.html only
+let searchInput = document.querySelector('#searchInput');
+
+function checkSearch() {
+    if (searchInput.value === '') {
+        alert('You did not enter a value to search');
+        return false;
+    }
+
+    return true;
+}
+//shop.html only end
+
+//contact.html only
+
+function checkContactMsg() {
+    let senderName = document.querySelector('#senderName');
+    let senderEmail = document.querySelector('#senderEmail');
+    let msg = document.querySelector('#msg');
+    let msgSubject = document.querySelector('#msgSubject');
+
+    let inputValues = [senderName, senderEmail, msg, msgSubject];
+    inputValues.forEach(val => {
+        if (val.value === '') {
+            alert('Please fill in the required fields marked *');
+            return false;
+        }
+
+        return true;
+    })
+}
+//contact.html only end
+
+// single-product.html only
+
+let MainImg = document.getElementById('MainImg');
+let smallimgs = document.getElementsByClassName('small-img');
+
+for (let i = 0; i < smallimgs.length; i++) {
+    smallimgs[i].addEventListener('click', () => {
+        MainImg.src = smallimgs[i].src;
+    })
+}
+
+let productQty = document.querySelector('#product-qty');
+
+productQty.addEventListener('input', () => {
+    if (productQty.value < 1) {
+        productQty.value = 1;
+    }
+})
+
+function addItemToCart() {
+    let productTypes = document.querySelector('#types')
+    if (productTypes.selectedIndex === 0) {
+        alert('Please select a '+productTypes.options[0].value+' for your product')
+        return false
+    }
+
+    return true
+}
+
+//single-product.html only
+
+
+// cart.html only
+
 // qty, prices and subtotals have the same length
 //which is number of items in the cart
 let qtyInput = document.querySelectorAll('.qty');
@@ -89,71 +158,4 @@ qtyInput.forEach(qty => {
     })
 })
 
-//cart,html only end
-window.onload = function() {
-    $('.tc').click(function() {
-        $('.tandc').css('display', 'block');
-
-        $('.tandc').dialog({
-            draggable: false,
-            modal: true,
-            resizable:true,
-            height: 400,
-            width: 300,
-
-            buttons: [
-                {
-                    text: "I Agree",
-                    icon: 'ui-icon-check',
-                    click: function() {
-                        $(this).dialog('close')
-                    },
-                },
-            ]
-        });
-    })
-
-    $('.pp').click(function() {
-        $('.privacy').css('display', 'block');
-
-        $('.privacy').dialog({
-            draggable: false,
-            modal: true,
-            resizable:true,
-            height: 300,
-            width: 500,
-
-            buttons: [
-                {
-                    text: "Ok",
-                    icon: 'ui-icon-check',
-                    click: function() {
-                        $(this).dialog('close')
-                    },
-                },
-            ]
-        });
-    })
-
-    $('.di').click(function() {
-        $('.delInfo').css('display', 'block');
-
-        $('.delInfo').dialog({
-            draggable: false,
-            modal: true,
-            resizable:true,
-            height: 300,
-            width: 300,
-
-            buttons: [
-                {
-                    text: "Ok",
-                    icon: 'ui-icon-check',
-                    click: function() {
-                        $(this).dialog('close')
-                    },
-                },
-            ]
-        });
-    })
-}
+//cart.html only end

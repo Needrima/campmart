@@ -64,7 +64,7 @@
                         <td>Plain Roundneck T-shirt</td>
                         <td class="price">NGN5000</td>
                         <td><input type="number" value="1" class="qty"></td>
-                        <td class="s-total">NGN5000</td>
+                        <td class="s-total"></td>
                     </tr> 
     
                     <tr>
@@ -73,7 +73,7 @@
                         <td>Checkered T-shirt</td>
                         <td class="price">NGN5000</td>
                         <td><input type="number" value="1" class="qty"></td>
-                        <td class="s-total">NGN5000</td>
+                        <td class="s-total"></td>
                     </tr>
                 </form> 
             </tbody>
@@ -237,16 +237,19 @@
                 console.log(qty)
                 
                 let subTotalValue = price * qty;
-                console.log(subTotalValue)
+                subtotal.textContent = 'NGN'+subTotalValue.toString();
             })
         }
         initValues();
     
         qtyInput.forEach(qty => {
             qty.addEventListener('input', () => {
+                // alert('Hellow world')
                 if (qty.value < 1) {
                     qty.value = 1;
                 }
+
+                initValues();
             })
         })
     </script>

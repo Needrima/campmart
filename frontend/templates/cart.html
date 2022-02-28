@@ -62,7 +62,7 @@
                         <td><a href="#"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="../pub/images/products/roundneck 3.jpeg" alt=""></td>
                         <td>Plain Roundneck T-shirt</td>
-                        <td class="price">NGN4000</td>
+                        <td class="price">NGN5000</td>
                         <td><input type="number" value="1" class="qty"></td>
                         <td class="s-total"></td>
                     </tr> 
@@ -101,12 +101,12 @@
 
                 <tr>
                     <td>Shipping</td>
-                    <td id="shipping-fee">Free</td>
+                    <td id="shipping-fee">NGN300</td>
                 </tr>
 
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong id="orderTotal">NGN10000</strong></td>
+                    <td><strong id="orderTotal"></strong></td>
                 </tr> 
             </table>
             <button class="normal" type="submit">Place Order</button>
@@ -236,6 +236,15 @@
             })
 
             cartTotal.textContent = 'NGN'+totalValue.toString();
+
+            let shippingFeeValue = shippingFee.slice(3)
+            let val = 0;
+            if (!isNaN(shippingFeeValue)) {
+                val = parseInt(shippingFeeValue)
+            }
+
+            let orderValue = totalValue + val;
+            orderTotal.textContent = 'NGN'+orderValue.toString()
         }
         initValues();
     
@@ -249,6 +258,7 @@
                 initValues();
             })
         })
+
     </script>
     <!---->
 

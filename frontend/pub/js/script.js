@@ -24,3 +24,71 @@ function newsletterSub(evt) {
 
     return true;
 }
+
+window.onload = function() {
+    $('.tc').click(function() {
+        $('.tandc').css('display', 'block');
+
+        $('.tandc').dialog({
+            draggable: false,
+            modal: true,
+            resizable:true,
+            height: 400,
+            width: 300,
+
+            buttons: [
+                {
+                    text: "I Agree",
+                    icon: 'ui-icon-check',
+                    click: function() {
+                        $(this).dialog('close')
+                    },
+                },
+            ]
+        });
+    })
+
+    $('.pp').click(function() {
+        $('.privacy').css('display', 'block');
+
+        $('.privacy').dialog({
+            draggable: false,
+            modal: true,
+            resizable:true,
+            height: 300,
+            width: 500,
+
+            buttons: [
+                {
+                    text: "Ok",
+                    icon: 'ui-icon-check',
+                    click: function() {
+                        $(this).dialog('close')
+                    },
+                },
+            ]
+        });
+    })
+
+    $('.di').click(function() {
+        $('.delInfo').css('display', 'block');
+
+        $('.delInfo').dialog({
+            draggable: false,
+            modal: true,
+            resizable:true,
+            height: 300,
+            width: 300,
+
+            buttons: [
+                {
+                    text: "Ok",
+                    icon: 'ui-icon-check',
+                    click: function() {
+                        $(this).dialog('close')
+                    },
+                },
+            ]
+        });
+    })
+}

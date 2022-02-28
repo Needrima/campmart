@@ -62,18 +62,18 @@
                         <td><a href="#"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="../pub/images/products/roundneck 3.jpeg" alt=""></td>
                         <td>Plain Roundneck T-shirt</td>
-                        <td id="price">NGN5000</td>
-                        <td><input type="number" value="1" id="qty"></td>
-                        <td id="s-total">NGN5000</td>
+                        <td class="price">NGN5000</td>
+                        <td><input type="number" value="1" class="qty"></td>
+                        <td class="s-total">NGN5000</td>
                     </tr> 
     
                     <tr>
                         <td><a href="#"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="../pub/images/products/tshirt 1.jpeg" alt=""></td>
                         <td>Checkered T-shirt</td>
-                        <td id="price">NGN5000</td>
-                        <td><input type="number" value="1" id="qty"></td>
-                        <td id="s-total">NGN5000</td>
+                        <td class="price">NGN5000</td>
+                        <td><input type="number" value="1" class="qty"></td>
+                        <td class="s-total">NGN5000</td>
                     </tr>
                 </form> 
             </tbody>
@@ -214,67 +214,41 @@
     <!--Cart.html page JS-->
     <script>
         // qty, prices and subtotals have the same length
-        let qty = document.querySelectorAll('#qty');
-        let prices = document.querySelectorAll('#price');
-        let subtotals = document.querySelectorAll('#s-total');
-
-        let cartSubtotal = document.querySelector('#cartSubtotal');
-
+        let qtyInput = document.querySelectorAll('.qty');
+    
+        let cartSubtotal = document.querySelector('.cartSubtotal');
+    
         let shippingFee = document.querySelector('#shipping-fee').textContent;
         
         let orderTotal = document.querySelector('#orderTotal');
-
-        function getOrderTotal() {// order subtotal = cart subtotal + shipping fee
-            if(shippingFee.trim().toLowerCase() === 'free') {
-                orderTotal.textContent = cartSubtotal.textContent;
-            }else {
-                let shippingFeePrice = parseInt(shippingFee.slice(3));
-                console.log(shippingFeePrice)
-                let cartFee = parseInt(cartSubtotal.textContent.slice(3));
-                console.log(cartFee)
-
-                let total = shippingFeePrice + cartFee;
-
-                orderTotal.textContent = 'NGN'+total.toString()
-            }
+    
+        // let cartRows = document.querySelectorAll('.cart-row');
+        // let removeIcons = document.querySelectorAll('.fa-times-circle')
+    
+        function initValues() {
+            let prices = document.querySelectorAll('.price');
+            let subtotals = document.querySelectorAll('.s-total');  
+            
+            subtotals.forEach((subtotal, index) => {
+                let price = parseInt(prices[index].textContent.slice(3));
+                let qty = qtyInput[index].value;
+    
+                console.log(price)
+                console.log(qty)
+                
+                let subTotalValue = price * qty;
+                console.log(subTotalValue)
+            })
         }
-        getOrderTotal();
-
-        for (let i = 0; i < qty.length; i++) {
-            qty[i].addEventListener('input', () => {
-                // check if quantity is zero or negative
-                if (qty[i].value < 1) {
-                    qty[i].value = 1;
+        initValues();
+    
+        qtyInput.forEach(qty => {
+            qty.addEventListener('input', () => {
+                if (qty.value < 1) {
+                    qty.value = 1;
                 }
-
-                getSubtotal(prices[i].textContent, qty[i].value, subtotals[i]); 
-                getCartSubtotal();
-                getOrderTotal(); 
             })
-        }
-
-        function getSubtotal(price, qty, subtotal) { // item subtotal
-            //get number part in price and convert to number type
-            // NGN5000 give 5000 as type number
-            let p = parseInt(price.slice(3)); 
-
-            // multiply the value by the quantity
-            let itemSubtotal = p * qty;
-
-            // change value of itemSubtotal to string and asign the subtotal to it
-            subtotal.textContent = 'NGN'+itemSubtotal.toString();
-        }
-
-        function getCartSubtotal() { // cart subtotal
-            let total = 0;
-            // loop through item subtotals and add their values to total variable
-            subtotals.forEach(s => {
-                let p = parseInt(s.textContent.slice(3))
-                total += p
-            })
-
-            cartSubtotal.textContent = 'NGN'+total.toString();
-        }
+        })
     </script>
     <!---->
 

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Campmart | Single-Product</title>
+
+    <link rel="stylesheet" href="../pub/css/style.css">
+
+    <!--Font awesome cdn-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <!---->
+
+    <!--Jquery ui css cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css">
+    <!---->
+</head>
+<body>
+
+    <section id="header">
+        <a href="#">
+            <img src="../pub/images/static/site-logo.jpeg" alt="">
+        </a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="far fa-shopping-cart"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="far fa-shopping-cart"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section> 
+
+    <section id="prodetails" class="section-p1">
+        <div class="single-pro-image">
+            <img src="../pub/images/products/roundneck 3.jpeg" width="100%" id="MainImg" alt="">
+
+            <div class="small-img-group">
+                <div class="small-img-col">
+                    <img src="../pub/images/products/roundneck 1.jpeg" width="100%" class="small-img" alt="">
+                </div>
+
+                <div class="small-img-col">
+                    <img src="../pub/images/products/roundneck 2.jpeg" width="100%" class="small-img" alt="">
+                </div>
+
+                <div class="small-img-col">
+                    <img src="../pub/images/products/roundneck 3.jpeg" width="100%" class="small-img" alt="">
+                </div> 
+                
+                <div class="small-img-col">
+                    <img src="../pub/images/products/roundneck 4.jpeg" width="100%" class="small-img" alt="">
+                </div> 
+            </div>
+        </div>
+
+        <div class="single-pro-details">
+            <h6>Shop / Shirts</h6>
+            <h4>Plain Roundneck T-shirt</h4>
+            <h2>NGN5000</h2>
+            <form action="" onsubmit="return addItemToCart()">
+                <select name="" id="types">
+                    <option value="Size">Size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+                <input type="number" value="1" id="product-qty">
+                <button type="submit" class="normal">Add To Cart</button>
+            </form>
+            <h4>Product Description</h4>
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing 
+                elit. Iure, magnam sunt. Aliquid ipsam nihil repellendus 
+                eligendi a illum ducimus laboriosam quaerat sequi distinctio. 
+                Ab, consequatur! Dolores vel architecto veritatis voluptate.
+                <ul>
+                    <li>All Plain</li>
+                    <li>Comes in different colors</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Also Checkout</h2>
+        <p>Suggested products for you</p>
+
+        <div class="pro-container">
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+        </div>
+    </section> 
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletter</h4>
+            <p>Get E-mail updates about our latest products and <span>special offers.</span></p>
+        </div>
+
+        <!-- <div > -->
+            <form action="#" class="form" onsubmit="return newsletterSub()">
+                <input type="text" name="" id="newsletter-form" placeholder="Your E-mail address">
+                <button class="normal" type="submit">Sign Up</button>
+            </form>
+        <!-- </div> -->
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img src="../pub/images/static/site-logo.jpeg" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong> 123, Jaja of Opobo street, Lagos</p>
+            <p><strong>Phone: </strong> +234 812 345 6789</p>
+            <p><strong>Hours: </strong> 07:00 - 19:00 Mon - Sun</p>
+
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <!-- <i class="fab fa-twitter"></i> -->
+                    <i class="fab fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h4>About</h4>
+            <a href="About.html">About Us</a>
+            <a class="di">Delivery Information</a>
+            <a class="pp">Privacy Policy</a>
+            <a class="tc">Terms & Conditions</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#newsletter">Sign Up For Newletter</a>
+            <!-- <a href="login.html">Login</a>
+            <a href="#">Logout</a> -->
+            <a href="cart.html">View Cart</a>
+            <!-- <a href="#">My Whislist</a>
+            <a href="#">Track My Order</a> -->
+        </div>
+ 
+        <!-- <div class="col install">
+            <h4>Install Mobile App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <a href="#">
+                    <img src="../pub/images/static/app-store.jpg" alt="">
+                </a>
+                <a href="#">
+                    <img src="../pub/images/static/google-play.jpg" alt="">
+                </a>
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="../pub/images/static/debit-cards.png" alt="">             
+        </div> -->
+
+        <div class="copyright">
+            <p>&copy; 2022, Campmart, All rights reserved.</p>
+        </div>
+    </footer>
+
+    <section class="tandc" title="Terms and Conditions">
+        <div>
+            <h3>As a seller</h3>
+            <ul>
+                <li>Term and Condition 1</li>
+                <li>Term and Condition 2</li>
+                <li>Term and Condition 3</li>
+                <li>Term and Condition 4</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>As a Buyer</h3>
+            <ul>
+                <li>Term and Condition 1</li>
+                <li>Term and Condition 2</li>
+                <li>Term and Condition 3</li>
+                <li>Term and Condition 4</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="privacy" title="Privacy Policy">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum cumque totam inventore vel iste dignissimos dolorem odit necessitatibus. Doloremque pariatur corporis nisi, dolorem placeat deserunt earum deleniti quas facilis quos!
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta eius tempora, eaque earum debitis dolor aspernatur quod officiis eum doloremque voluptates ducimus voluptas blanditiis vero at quas quasi, reprehenderit labore?
+    </section>
+
+    <section class="delInfo" title="Delivery Information">
+        <h3>How do we deliver your package ?</h3>
+        <ul>
+            <li>Step 1</li>
+            <li>Step 2</li>
+            <li>Step 3</li>
+            <li>Step 4</li>
+        </ul>
+    </section>
+
+     <!--Vanilla JS-->
+     <script src="../pub/js/script.js"></script>
+     <!---->
+ 
+     <!--Jquery ui js cdn-->
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+     <!---->
+ 
+     <!--Jquery script-->
+     <script>
+         $('.tc').click(function() {
+             $('.tandc').css('display', 'block');
+ 
+             $('.tandc').dialog({
+                 draggable: false,
+                 modal: true,
+                 resizable:true,
+                 height: 400,
+                 width: 300,
+ 
+                 buttons: [
+                     {
+                         text: "I Agree",
+                         icon: 'ui-icon-check',
+                         click: function() {
+                             $(this).dialog('close')
+                         },
+                     },
+                 ]
+             });
+         })
+ 
+         $('.pp').click(function() {
+             $('.privacy').css('display', 'block');
+ 
+             $('.privacy').dialog({
+                 draggable: false,
+                 modal: true,
+                 resizable:true,
+                 height: 300,
+                 width: 500,
+ 
+                 buttons: [
+                     {
+                         text: "Ok",
+                         icon: 'ui-icon-check',
+                         click: function() {
+                             $(this).dialog('close')
+                         },
+                     },
+                 ]
+             });
+         })
+ 
+         $('.di').click(function() {
+             $('.delInfo').css('display', 'block');
+ 
+             $('.delInfo').dialog({
+                 draggable: false,
+                 modal: true,
+                 resizable:true,
+                 height: 300,
+                 width: 300,
+ 
+                 buttons: [
+                     {
+                         text: "Ok",
+                         icon: 'ui-icon-check',
+                         click: function() {
+                             $(this).dialog('close')
+                         },
+                     },
+                 ]
+             });
+         })
+     </script>
+     <!---->
+</body>
+</html>

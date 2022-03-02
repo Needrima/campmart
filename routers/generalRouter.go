@@ -1,12 +1,13 @@
 package routers
 
-// import (
-// 	"net/http"
+import (
+	controller "campmart/controllers"
+	"net/http"
 
-// 	"github.com/gorilla/mux"
-// )
+	"github.com/julienschmidt/httprouter"
+)
 
-// func StaticFilesRoute(r *mux.Router) {
-// 	fs := http.FileServer(http.Dir("campmart-website"))
-// 	r.Handle("/", fs)
-// }
+func GeneralRoute(r *httprouter.Router) {
+	r.GET("/", controller.RedirectToHome())
+	r.ServeFiles("/website-pub/*filepath", http.Dir("website-pub"))
+}

@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func HomeRoutes(r *httprouter.Router) {
-	r.GET("/home", controller.HomeGet())
+func CheckoutRoutes(r *httprouter.Router) {
+	r.GET("/checkout", controller.CheckoutGet())
 }

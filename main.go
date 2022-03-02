@@ -1,71 +1,85 @@
 package main
 
 import (
-	"html/template"
+	router "campmart/routers"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
+
+	// "github.com/gorilla/mux"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	r := mux.NewRouter()
-	tpl := template.Must(template.ParseGlob("templates/*.html"))
+	r := httprouter.New()
 
-	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "index.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	router.HomeRoutes(r)
+	router.ShopRoutes(r)
+	router.BlogRoutes(r)
+	router.ContactRoutes(r)
+	router.AboutRoutes(r)
+	router.CartRoutes(r)
+	router.SingleProductRoutes(r)
+	router.SingleBlogRoutes(r)
+	router.CheckoutRoutes(r)
 
-	r.HandleFunc("/about", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "about.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	router.GeneralRoute(r)
 
-	r.HandleFunc("/cart", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "cart.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// tpl := template.Must(template.ParseGlob("templates/*.html"))
+	// r.GET("/", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "index.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.HandleFunc("/checkout", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "checkout.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// r.GET("/about", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "about.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.HandleFunc("/contact", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "contact.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// r.GET("/cart", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "cart.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.HandleFunc("/shop", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "shop.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// r.GET("/checkout", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "checkout.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.HandleFunc("/single-blog", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "single-blog.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// r.GET("/contact", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "contact.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.HandleFunc("/single-product", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "single-product.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// r.GET("/shop", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "shop.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.HandleFunc("/blog", func(w http.ResponseWriter, r *http.Request) {
-		if err := tpl.ExecuteTemplate(w, "blog.html", nil); err != nil {
-			log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
-		}
-	})
+	// r.GET("/single-blog", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "single-blog.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
 
-	r.Handle("/pub/", http.StripPrefix("/pub/", http.FileServer(http.Dir("pub"))))
+	// r.GET("/single-product", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "single-product.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
+
+	// r.GET("/blog", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	// 	if err := tpl.ExecuteTemplate(w, "blog.html", nil); err != nil {
+	// 		log.Fatalf("Error parsing template: %v for route %v\n", err, r.URL.Path)
+	// 	}
+	// })
+
+	// r.ServeFiles("/pub/*filepath", http.Dir("pub"))
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Campmart | Home</title>
+    <title>Campmart | Shop</title>
 
     <link rel="stylesheet" href="../pub/css/style.css">
 
@@ -22,10 +22,15 @@
             <img src="../pub/images/static/site-logo.jpeg" alt="">
         </a>
 
+        <form action="#"  onsubmit="return checkSearch();">
+            <input type="text" name="" id="searchInput" placeholder="What would you like to buy today?" style="width: 300px; height: 50px; border-top-left-radius:10px; border-bottom-left-radius:10px; border: none; outline: none; padding: 0 10px; font-size: 15px;">
+            <input type="submit" name="" value="Go" style="background-color: #088187; height: 50px; width: 50px;border-top-right-radius:10px;border-bottom-right-radius:10px; border: none; color: white; cursor: pointer;">
+        </form>
+
         <div>
             <ul id="navbar">
-                <li><a class="active" href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -39,71 +44,15 @@
         </div>
     </section> 
     
-    <section id="hero">
-        <h4>Get it all on campus</h4>
-        <h2>Student friendly prices</h2>
-        <h1>On all products</h1>
-        <p>So you can save more as a student</p>
-        <a href="shop.html"><button>Shop now</button></a>
-    </section>
-
-    <section id="feature" class="section-p1 ">
-        <div class="fe-box">
-            <img src="../pub/images/static/free delivery 2.jpeg" alt="">
-            <h6>Free Delivery</h6>
-        </div>
-
-        <div class="fe-box">
-            <img src="../pub/images/static/online order logo.jpg" alt="">
-            <h6>Online Order</h6>
-        </div>
-
-        <div class="fe-box">
-            <img src="../pub/images/static/save money.png" alt="">
-            <h6>Save Money</h6>
-        </div>
-
-        <div class="fe-box">
-            <img src="../pub/images/static/promo logo.jpeg" alt="">
-            <h6>Promotions</h6>
-        </div>
-
-        <div class="fe-box">
-            <img src="../pub/images/static/happy sales.png" alt="">
-            <h6>Happy Sales</h6>
-        </div>
-
-        <div class="fe-box">
-            <img src="../pub/images/static/247 support.png" alt="">
-            <h6>24/7 Support </h6>
-        </div>
+    <section id="page-header">
+        <h2>#Your One Stop Shop On Campus</h2>
+        <!-- <p>Students friendly prices</p> -->
     </section>
 
     <section id="product1" class="section-p1">
-        <h2>Today's Suggestions</h2>
-        <p>Just For You</p>
-
         <div class="pro-container">
             <div class="pro" >
-                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';"="">
-
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5>Plain Roundneck T-shirt</h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
-
-            <div class="pro" >
-                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';"="">
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
 
                 <div class="des">
                     <span>Adidas</span>
@@ -121,7 +70,7 @@
             </div>
 
             <div class="pro" >
-                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';"="">
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
 
                 <div class="des">
                     <span>Adidas</span>
@@ -139,7 +88,7 @@
             </div>
 
             <div class="pro" >
-                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';"="">
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
 
                 <div class="des">
                     <span>Adidas</span>
@@ -155,20 +104,169 @@
                 </div>
                 <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
             </div>
-        </div>
-    </section>    
 
-    <section id="banner" class="section-m1">
-        <h4>Don't forget to signup for our newsletter</h4>
-        <h2>And stand to get <span>30% Off</span> - Any Product you choose</h2>
-        <a href="#newsletter"><button class="normal">Signup now</button></a>
-    </section>
+            <div class="pro" >
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
 
-    <section id="product1" class="section-p1">
-        <h2>New Arrivals</h2>
-        <p>Latest Products</p>
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
 
-        <div class="pro-container">
+            <div class="pro" >
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+        
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
+            <div class="pro" >
+                <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
+
+                <div class="des">
+                    <span>Adidas</span>
+                    <h5><a href="#" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>NGN5,000</h4>
+                </div>
+                <a href="#"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>
+
             <div class="pro" >
                 <img src="../pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='single-product.html';">
 
@@ -243,37 +341,10 @@
         </div>
     </section>  
 
-    <section id="sm-banner" class="section-p1">
-        <div class="banner-box">
-            <h4>Place your ads</h4>
-            <h2>Advertise Here</h2>
-            <span>Contact us now</span>
-            <a href="tel:+"><button class="white">Click to contact</button></a>
-        </div>
-
-        <div class="banner-box banner-box2">
-            <h4>Place your ads</h4>
-            <h2>Advertise Here</h2>
-            <span>Contact us now</span>
-            <a href="tel:+"><button class="white">Click to contact</button></a>
-        </div>
-    </section>
-
-    <section id="banner3">
-        <div class="banner-box">
-            <h2>Advertise here</h2>
-            <h3>Contact us now</h3>
-        </div>
-
-        <div class="banner-box banner-box2">
-            <h2>Advertise here</h2>
-            <h3>Contact us now</h3>
-        </div>
-
-        <div class="banner-box banner-box3">
-            <h2>Advertise here</h2>
-            <h3>Contact us now</h3>
-        </div>
+    <section id="pagination" class="section-p1">
+        <!-- <a href="#">1</a> -->
+        <a href="#"><i class="fal fa-long-arrow-left"></i></a>
+        <a href="#"><i class="fal fa-long-arrow-right"></i></a>
     </section>
 
     <section id="newsletter" class="section-p1 section-m1">
@@ -386,6 +457,7 @@
 
     <!--Vanilla JS-->
     <script src="../pub/js/script.js"></script>
+    <script src="../pub/js/shop.js"></script>
     <!---->
 
     <!--Jquery ui js cdn-->

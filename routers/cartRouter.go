@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func CartRoutes(r *httprouter.Router) {
+func RegisterCartRoutes(r *httprouter.Router) {
 	r.GET("/cart", controller.CartGet())
 }

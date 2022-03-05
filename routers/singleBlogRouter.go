@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func SingleBlogRoutes(r *httprouter.Router) {
+func RegisterSingleBlogRoutes(r *httprouter.Router) {
 	r.GET("/single-blog", controller.SingleBlogGet())
 }

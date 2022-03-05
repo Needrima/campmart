@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func ContactRoutes(r *httprouter.Router) {
+func RegisterContactRoutes(r *httprouter.Router) {
 	r.GET("/contact", controller.ContactGet())
 }

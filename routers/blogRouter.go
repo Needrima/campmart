@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func BlogRoutes(r *httprouter.Router) {
+func RegisterBlogRoutes(r *httprouter.Router) {
 	r.GET("/blog", controller.BlogGet())
 }

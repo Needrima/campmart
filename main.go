@@ -12,17 +12,18 @@ import (
 func main() {
 	r := httprouter.New()
 
-	router.GeneralRoute(r)
+	router.RegisterGeneralRoute(r) // general routes like serving static files
+	router.RegisterAdminRoute(r)   // admin routes like adding new products
 
-	router.HomeRoutes(r)
-	router.ShopRoutes(r)
-	router.BlogRoutes(r)
-	router.ContactRoutes(r)
-	router.AboutRoutes(r)
-	router.CartRoutes(r)
-	router.SingleProductRoutes(r)
-	router.SingleBlogRoutes(r)
-	router.CheckoutRoutes(r)
+	router.RegisterHomeRoutes(r)
+	router.RegisterShopRoutes(r)
+	router.RegisterBlogRoutes(r)
+	router.RegisterContactRoutes(r)
+	router.RegisterAboutRoutes(r)
+	router.RegisterCartRoutes(r)
+	router.RegisterSingleProductRoutes(r)
+	router.RegisterSingleBlogRoutes(r)
+	router.RegisterCheckoutRoutes(r)
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

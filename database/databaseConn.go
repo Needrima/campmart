@@ -17,7 +17,6 @@ func initializeDB() *mongo.Database {
 	if err != nil {
 		log.Fatalf("Error creating mongodb client %v\n:", err)
 	}
-	defer client.Disconnect(context.Background())
 
 	if err := client.Ping(context.TODO(), readpref.Primary()); err != nil {
 		log.Fatalf("Error connecting to mongodb %v\n:", err)

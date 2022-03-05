@@ -40,14 +40,22 @@
     </section>  
 
     <section class="section-p1" id="checkout">
-        <form action="#" onsubmit="return checkCheckout()">
+        <form method="post" onsubmit="return checkCheckout()" enctype="multipart/form-data">
             <h3>NEW PRODUCT</h3>
-            <input id="buyerName" type="text" placeholder="Product Name *">
-            <input id="buyerEmail" type="number" placeholder="Product Price *.. Number only">
-            <input id="buyerPhone" type="text" placeholder="Product types*... Seperate entries with a comma. Ex: Small, Medium, Large, XL*">
-            <input id="buyerName" type="text" placeholder="Your Brand Name. Ex: Bella's Wears">
-            <textarea id="comment" name="" id="" cols="30" rows="5" placeholder="Product Properties *. Seperated by comma. Ex. 4000mAh battery, Broken Screen, 4gb RAM"></textarea>
-            <textarea id="comment" name="" id="" cols="30" rows="10" placeholder="Product Description *"></textarea>
+            <input name="productName" type="text" placeholder="Product Name *">
+            <input name="productPrice" type="number" placeholder="Product Price *.. Number only">
+            <input name="productType" type="text" placeholder="Product types*... Seperate entries with a comma. Ex: Small, Medium, Large, XL*">
+            <input name="brandName" type="text" placeholder="Your Brand Name. Ex: Bella's Wears">
+            <input name="rating" type="number" placeholder="Rating. Ex: Bella's Wears">
+            <textarea name="productProperties"  cols="30" rows="5" placeholder="Product Properties *. Seperated by comma. Ex. 4000mAh battery, Broken Screen, 4gb RAM"></textarea>
+            <textarea name="productDescription"  cols="30" rows="10" placeholder="Product Description *"></textarea>
+            <input type="text" name="sellerName" id="" placeholder="Seller's Name *">
+            <input type="text" name="sellerEmail" id="" placeholder="Seller's Email *">
+            <input type="text" name="sellerPhone" id="" placeholder="Seller's Phone Number *">
+            <input type="file" name="f1" id="">
+            <input type="file" name="f2" id="">
+            <input type="file" name="f3" id="">
+            <input type="file" name="f4" id="">
             <button class="normal" type="submit">Add</button>
         </form>
     </section>
@@ -226,5 +234,10 @@
         })
     </script>
     <!---->
+    {{if .}}
+    <script>        
+        alert("Product succeddfully added with ID:"{{.}})    
+    </script>
+    {{end}}
 </body>
 </html>

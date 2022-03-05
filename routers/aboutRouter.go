@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func AboutRoutes(r *httprouter.Router) {
+func RegisterAboutRoutes(r *httprouter.Router) {
 	r.GET("/about", controller.AboutGet())
 }

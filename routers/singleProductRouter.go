@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func SingleProductRoutes(r *httprouter.Router) {
+func RegisterSingleProductRoutes(r *httprouter.Router) {
 	r.GET("/single-product", controller.SingleProductGet())
 }

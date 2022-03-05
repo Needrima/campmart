@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func HomeRoutes(r *httprouter.Router) {
+func RegisterHomeRoutes(r *httprouter.Router) {
 	r.GET("/home", controller.HomeGet())
 }

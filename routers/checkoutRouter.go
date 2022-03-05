@@ -6,6 +6,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func CheckoutRoutes(r *httprouter.Router) {
+func RegisterCheckoutRoutes(r *httprouter.Router) {
 	r.GET("/checkout", controller.CheckoutGet())
 }

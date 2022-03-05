@@ -9,7 +9,6 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func NewProductGet() httprouter.Handle {

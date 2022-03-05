@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"campmart/middlewares"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -9,10 +10,15 @@ import (
 )
 
 func HomeGet() httprouter.Handle {
-	products := middlewares.GetHomeProducts()
+
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		if err := tpl.ExecuteTemplate(w, "index.html", nil); err != nil {
-			log.Fatal("Exexcute Template error:", products)
+		products := middlewares.GetHomeProducts()
+		for _, product := range products {
+			fmt.Println(product)
+		}
+
+		if err := tpl.ExecuteTemplate(w, "index.html", products); err != nil {
+			log.Fatal("Exexcute Template error:", err)
 		}
 	}
 }

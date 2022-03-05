@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func NewProductGet() httprouter.Handle {
@@ -43,7 +44,9 @@ func AddNewProduct() httprouter.Handle {
 
 		fmt.Printf("Inserted product id: %v", insertOneResult.InsertedID)
 
-		if err := tpl.ExecuteTemplate(w, "new-product.html", insertOneResult.InsertedID); err != nil {
+		successMsg := fmt.Sprintf("Successfully added product with id %v", insertOneResult.InsertedID)
+
+		if err := tpl.ExecuteTemplate(w, "new-product.html", successMsg); err != nil {
 			log.Fatal("Exexcute Template error:", err)
 		}
 	}

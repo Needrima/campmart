@@ -4,6 +4,7 @@ import (
 	"campmart/models"
 	"io/ioutil"
 	"log"
+	"strings"
 )
 
 func ProcessImageAndReturnNames(productImages []models.ProductImage, productID string) ([]string, error) {
@@ -37,7 +38,9 @@ func ProcessImageAndReturnNames(productImages []models.ProductImage, productID s
 	var img_names []string
 
 	for _, file := range filesInProductDir {
-		img_names = append(img_names, file.Name())
+		if strings.Contains(file.Name(), productID) {
+			img_names = append(img_names, file.Name())
+		}
 	}
 
 	return img_names, nil

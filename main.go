@@ -2,6 +2,7 @@ package main
 
 import (
 	router "campmart/routers"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -25,5 +26,6 @@ func main() {
 	router.RegisterSingleBlogRoutes(r)
 	router.RegisterCheckoutRoutes(r)
 
+	fmt.Println("Serving on port 8080. Visit localhost:8080 ....")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

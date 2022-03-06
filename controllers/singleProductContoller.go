@@ -1,7 +1,8 @@
 package controllers
 
 import (
-	// "campmart/helpers"
+	"campmart/middlewares"
+	"campmart/models"
 	"log"
 	"net/http"
 
@@ -12,7 +13,14 @@ import (
 
 func SingleProductGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		if err := tpl.ExecuteTemplate(w, "single-product.html", nil); err != nil {
+		id := ps.ByName("id")
+
+		productAndSuggestions := models.ProductAndSuggestions{
+			Product:     middlewares.GetSingeProduct(id),
+			Suggestions: middlewares.GetSuggestionsProducts(),
+		}
+
+		if err := tpl.ExecuteTemplate(w, "single-product.html", productAndSuggestions); err != nil {
 			log.Fatal("ExexcuteTemplate error:", err)
 		}
 	}

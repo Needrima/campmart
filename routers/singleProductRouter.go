@@ -7,5 +7,5 @@ import (
 )
 
 func RegisterSingleProductRoutes(r *httprouter.Router) {
-	r.GET("/single-product", controller.SingleProductGet())
+	r.GET("/single-product/:id", controller.SingleProductGet())
 }

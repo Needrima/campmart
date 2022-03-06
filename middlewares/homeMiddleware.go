@@ -14,7 +14,9 @@ func GetHomeProducts() []models.Product { // gets 8 random prodicts for home pag
 
 	var products []models.Product
 
-	productsCursor, err := collection.Find(context.TODO(), bson.M{})
+	sampleStage := bson.M{"$sample": bson.M{"size": 8}} // get 8 random products
+
+	productsCursor, err := collection.Aggregate(context.TODO(), []bson.M{sampleStage})
 	if err != nil {
 		log.Printf("error getting sample cursor: %v", err)
 		return []models.Product{}

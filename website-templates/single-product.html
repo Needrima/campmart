@@ -40,76 +40,15 @@
     </section> 
 
     <section id="prodetails" class="section-p1">
-        <!-- <div class="single-pro-image">
-            <img src="../website-pub/images/products/roundneck 3.jpeg" width="100%" id="MainImg" alt="">
-
-            <div class="small-img-group">
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/roundneck 1.jpeg" width="100%" class="small-img" alt="">
-                </div>
-
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/roundneck 2.jpeg" width="100%" class="small-img" alt="">
-                </div>
-
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/roundneck 3.jpeg" width="100%" class="small-img" alt="">
-                </div> 
-                
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/roundneck 4.jpeg" width="100%" class="small-img" alt="">
-                </div> 
-            </div>
-        </div>
-
-        <div class="single-pro-details">
-            <h6>Shop / Shirts</h6>
-            <h4>Plain Roundneck T-shirt</h4>
-            <h2>NGN5000</h2>
-            <form action="" onsubmit="return addItemToCart()">
-                <select name="" id="types">
-                    <option value="Size">Size</option>
-                    <option value="Small">Small</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Large">Large</option>
-                    <option value="XL">XL</option>
-                    <option value="XXL">XXL</option>
-                </select>
-                <input type="number" value="1" id="product-qty">
-                <button type="submit" class="normal">Add To Cart</button>
-            </form>
-            <h4>Product Description</h4>
-            <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing 
-                elit. Iure, magnam sunt. Aliquid ipsam nihil repellendus 
-                eligendi a illum ducimus laboriosam quaerat sequi distinctio. 
-                Ab, consequatur! Dolores vel architecto veritatis voluptate.
-                <ul>
-                    <li>All Plain</li>
-                    <li>Comes in different colors</li>
-                </ul>
-            </div>
-        </div> -->
-
         <div class="single-pro-image">
             <img src="../website-pub/images/products/{{index .Image_names 0}}" width="100%" id="MainImg" alt="">
 
             <div class="small-img-group">
+                {{range .Image_names}}
                 <div class="small-img-col">
-                    <img src="../website-pub/images/products/{{index .Image_names 0}}" width="100%" class="small-img" alt="">
+                    <img src="../website-pub/images/products/{{.}}" width="100%" class="small-img" alt="">
                 </div>
-
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/{{index .Image_names 1}}" width="100%" class="small-img" alt="">
-                </div>
-
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/{{index .Image_names 2}}" width="100%" class="small-img" alt="">
-                </div> 
-                
-                <div class="small-img-col">
-                    <img src="../website-pub/images/products/{{index .Image_names 3}}" width="100%" class="small-img" alt="">
-                </div> 
+                {{end}}
             </div>
         </div>
 
@@ -248,7 +187,7 @@
                     </div>
                     <h4>NGN{{.Price}}</h4>
                 </div>
-                <a href="/add-to-cart/{{.Id}}"><i class="fal fa-shopping-cart cart"> </i></a>
+                <a class="cart-link" value="{{.Id}}"><i class="fal fa-shopping-cart cart"> </i></a>
             </div>    
             {{end}}
         </div>
@@ -365,6 +304,7 @@
      <!--Vanilla JS-->
      <script src="../website-pub/js/script.js"></script>
      <script src="../website-pub/js/single-product.js"></script>
+     <script src="../website-pub/js/AJAX-Calls.js"></script>
      <!---->
  
      <!--Jquery ui js cdn-->

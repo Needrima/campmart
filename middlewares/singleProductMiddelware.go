@@ -4,7 +4,6 @@ import (
 	"campmart/database"
 	"campmart/models"
 	"context"
-	"fmt"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -27,8 +26,6 @@ func GetSingeProduct(id string) models.Product {
 		log.Printf("Error decoding document into product struct: %v\n", err)
 		return models.Product{}
 	}
-
-	fmt.Println("Single product:", product)
 
 	return product
 }

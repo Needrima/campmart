@@ -1028,9 +1028,16 @@ footer .copyright {
 
 #cart table td:nth-child(4),
 #cart table td:nth-child(5),
-#cart table td:nth-child(6) {
+#cart table td:nth-child(6),
+#cart table td:nth-child(7) {
     width: 150px;
     text-align: center;
+}
+
+#cart table td:nth-child(6) select {
+    outline: none;
+    width: 100px;
+    height: 30px;
 }
 
 #cart table td:nth-child(5) input {

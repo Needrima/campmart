@@ -19,9 +19,5 @@ type Order struct {
 	Shipping_fee int                `bson:"shipping_fee, omitempty"`
 }
 
+var cartSession = map[string]string{}
 var TemporaryCartDatabase = map[string]CartItem{}
-
-// add product to temporary database
-func (C CartItem) AddToTemporaryCartDatabase() {
-	TemporaryCartDatabase[C.Id] = C
-}

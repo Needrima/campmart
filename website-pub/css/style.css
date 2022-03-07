@@ -1159,6 +1159,22 @@ footer .copyright {
     color: white;
 }
 
+/*Empty cart page*/
+.empty-cart h1{
+    text-align: center;
+    color: grey;
+}
+
+.empty-cart h1 a {
+    color: #088178;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.empty-cart h1 a:hover {
+    opacity: 0.5;
+}
+
 /* pages media query */ 
 @media (max-width: 799px) {
 

@@ -2,5 +2,4 @@ package database
 
 import "campmart/models"
 
-var cartSession = map[string]string{}
-var TemporaryCartDatabase = map[string]models.CartItem{}
+var TemporaryCartDB = map[string]map[string]models.CartItem{}

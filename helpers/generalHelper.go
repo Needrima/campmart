@@ -1,9 +1,6 @@
 package helpers
 
 import (
-	"campmart/database"
-	"campmart/models"
-	"errors"
 	"html/template"
 )
 
@@ -14,12 +11,12 @@ func LoadTemplate() *template.Template {
 	return tpl
 }
 
-// add cart items to temporary database .. see type CartIte in package models
-func AddToTemporaryCartDatabase(C models.CartItem) error {
-	if _, ok := database.TemporaryCartDatabase[C.Id]; !ok {
-		database.TemporaryCartDatabase[C.Id] = C
-		return nil
+func FoundString(items []string, item string) bool {
+	for _, it := range items {
+		if item == it {
+			return true
+		}
 	}
 
-	return errors.New("item already added to cart")
+	return false
 }

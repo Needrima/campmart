@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"campmart/helpers"
+	"campmart/database"
 	"campmart/middlewares"
 	"campmart/models"
 	"fmt"
@@ -10,8 +10,10 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/julienschmidt/httprouter"
+	uid "github.com/satori/go.uuid"
 )
 
 //gets product by id and 4 randoms products as suggestions for serve to single-product.html
@@ -62,13 +64,39 @@ func SingeProductItemToCart() httprouter.Handle {
 		cartItem := middlewares.GetCartItemFomProduct(product, qty, selectedType)
 		fmt.Println(cartItem)
 
-		if err := helpers.AddToTemporaryCartDatabase(cartItem); err != nil {
-			w.Write([]byte(err.Error()))
+		cartCookie, err := r.Cookie("cart")
+		if err == http.ErrNoCookie {
+			cookieId := uid.NewV4()
+			cookie := &http.Cookie{
+				Name:    "cart",
+				Value:   cookieId.String(),
+				Expires: time.Now().Add(time.Hour * 24),
+			}
+			http.SetCookie(w, cookie)
+
+			if database.TemporaryCartDB[cookie.Value] == nil {
+				database.TemporaryCartDB[cookie.Value] = map[string]models.CartItem{
+					cartItem.Id: cartItem,
+				}
+			}
+
+			successMsg := fmt.Sprintf("successfully added %v to cart", cartItem.Name)
+			w.Write([]byte(successMsg))
 			return
 		}
 
-		successMsg := fmt.Sprintf("Successfully added %v to cart", cartItem.Name)
-		w.Write([]byte(successMsg))
+		if database.TemporaryCartDB[cartCookie.Value] == nil {
+			database.TemporaryCartDB[cartCookie.Value] = map[string]models.CartItem{}
+		}
 
+		if _, ok := database.TemporaryCartDB[cartCookie.Value][cartItem.Id]; !ok {
+			database.TemporaryCartDB[cartCookie.Value][cartItem.Id] = cartItem
+
+			successMsg := fmt.Sprintf("successfully added %v to cart", cartItem.Name)
+			w.Write([]byte(successMsg))
+			return
+		}
+
+		w.Write([]byte("item already in cart"))
 	}
 }

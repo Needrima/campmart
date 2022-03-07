@@ -32,6 +32,8 @@ func SingleProductGet() httprouter.Handle {
 	}
 }
 
+//gets items on the "/add-to-cart" path with AJAX and add to temporary cart database
+//check add-to-cart.js
 func SingeProductItemToCart() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		bs, err := ioutil.ReadAll(r.Body)

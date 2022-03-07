@@ -23,7 +23,8 @@ func RedirectToHome() httprouter.Handle {
 	}
 }
 
-//gets cart item and store in temporaray database map on "POST" request from AjAX call to "/add-to-cart"
+//gets items on the "/single-product/add-to-cart" path with AJAX and add to temporary cart database
+//check single-product-add-to-cart.js
 func AddItemToCart() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		bs, err := ioutil.ReadAll(r.Body)

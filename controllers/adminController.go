@@ -19,7 +19,7 @@ func NewProductGet() httprouter.Handle {
 	}
 }
 
-//gets new product from form input and stores in database
+//get new product from form input and add to database
 func AddNewProduct() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		product, err := middlewares.CreateNewProduct(r)

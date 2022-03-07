@@ -9,6 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
+// initialized connectio to mongoDB and returns a database instance
 func initializeDB() *mongo.Database {
 	shellURI := "mongodb://localhost:27017"
 	clientOptions := options.Client().ApplyURI(shellURI)

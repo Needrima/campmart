@@ -21,6 +21,7 @@ type Order struct {
 
 var TemporaryCartDatabase = map[string]CartItem{}
 
+// add product to temporary database
 func (C CartItem) AddToTemporaryCartDatabase() {
 	TemporaryCartDatabase[C.Id] = C
 }

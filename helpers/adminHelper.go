@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// processes product images and returns their names as stored in filesystem
 func ProcessImageAndReturnNames(productImages []models.ProductImage, productID string) ([]string, error) {
 	// range over the project images and store in path "website-pub/images/products"
 	for _, image := range productImages {
@@ -29,12 +30,14 @@ func ProcessImageAndReturnNames(productImages []models.ProductImage, productID s
 		tempfile.Write(bs)
 	}
 
+	// read images directory
 	filesInProductDir, err := ioutil.ReadDir("website-pub/images/products")
 	if err != nil {
 		log.Printf("Error reading product images drectory: %v", err)
 		return []string{}, err
 	}
 
+	// check for newly uploaded images and append ther names to img_names variable
 	var img_names []string
 
 	for _, file := range filesInProductDir {

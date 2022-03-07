@@ -2,6 +2,7 @@ package middlewares
 
 import "campmart/models"
 
+// create new cart item
 func GetCartItemFomProduct(product models.Product, qty int, selectedType string) models.CartItem {
 	cartItem := models.CartItem{
 		Id:            product.Id,

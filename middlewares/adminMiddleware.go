@@ -16,10 +16,11 @@ import (
 )
 
 var (
-	ErrStringToInt = errors.New("Could not convert string to int")
-	ErrFormFile    = errors.New("FormFile error")
+	ErrStringToInt = errors.New("could not convert string to int")
+	ErrFormFile    = errors.New("formfile error")
 )
 
+// create new product from form inputs in new-product.html
 func CreateNewProduct(r *http.Request) (models.Product, error) {
 	var newProduct models.Product
 	var seller models.Seller
@@ -52,7 +53,8 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 	newProduct.Date_added = time.Now().Format(time.ANSIC)
 	newProduct.Seller = seller
 
-	if err := r.ParseMultipartForm(2 << 2); err != nil {
+	// get form files
+	if err := r.ParseMultipartForm(2 << 10); err != nil {
 		log.Println("Max memory err:", err)
 	}
 
@@ -60,6 +62,7 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 
 	formFiles := form.File["img_files"]
 
+	// range over form file and get productimages for each file in form
 	var productImages []models.ProductImage
 
 	for _, file := range formFiles {

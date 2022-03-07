@@ -15,6 +15,7 @@ type Product struct {
 	Image_names []string           `bson:"image_names"`
 	Description string             `bson:"description"`
 	Properties  []string           `bson:"properties"`
+	Category    string             `bson:"category, omitempty"`
 	Rating      int                `bson:"rating"`
 	Brand       string             `bson:"brand"`
 	Date_added  string             `bson:"date_added"`

@@ -18,6 +18,3 @@ type Order struct {
 	Cart_items   []CartItem         `bson:"cart_items"`
 	Shipping_fee int                `bson:"shipping_fee, omitempty"`
 }
-
-var cartSession = map[string]string{}
-var TemporaryCartDatabase = map[string]CartItem{}

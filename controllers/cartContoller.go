@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"campmart/models"
+	"campmart/database"
 	"log"
 	"net/http"
 
@@ -10,7 +10,7 @@ import (
 
 // get cart items from temmporary database database and serves to cart page
 func CartGet() httprouter.Handle {
-	cartItems := models.TemporaryCartDatabase
+	cartItems := database.TemporaryCartDatabase
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 		if len(cartItems) == 0 {

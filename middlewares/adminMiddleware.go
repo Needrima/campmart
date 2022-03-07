@@ -52,36 +52,28 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 	newProduct.Date_added = time.Now().Format(time.ANSIC)
 	newProduct.Seller = seller
 
-	f1, h1, err := r.FormFile("f1")
-	if err != nil {
-		log.Printf("%v: %v", ErrFormFile, err)
-		return models.Product{}, ErrFormFile
+	if err := r.ParseMultipartForm(2 << 2); err != nil {
+		log.Println("Max memory err:", err)
 	}
 
-	f2, h2, err := r.FormFile("f2")
-	if err != nil {
-		log.Printf("%v: %v", ErrFormFile, err)
-		return models.Product{}, ErrFormFile
+	form := r.MultipartForm
+
+	formFiles := form.File["img_files"]
+
+	var productImages []models.ProductImage
+
+	for _, file := range formFiles {
+		f, _ := file.Open()
+		productImg := models.ProductImage{
+			File:      f,
+			Name:      file.Filename,
+			Extension: filepath.Ext(file.Filename),
+		}
+
+		productImages = append(productImages, productImg)
 	}
 
-	f3, h3, err := r.FormFile("f3")
-	if err != nil {
-		log.Printf("%v: %v", ErrFormFile, err)
-		return models.Product{}, ErrFormFile
-	}
-
-	f4, h4, err := r.FormFile("f4")
-	if err != nil {
-		log.Printf("%v: %v", ErrFormFile, err)
-		return models.Product{}, ErrFormFile
-	}
-
-	img_names, err := helpers.ProcessImageAndReturnNames([]models.ProductImage{
-		{File: f1, Name: h1.Filename, Extension: filepath.Ext(h1.Filename)},
-		{File: f2, Name: h2.Filename, Extension: filepath.Ext(h2.Filename)},
-		{File: f3, Name: h3.Filename, Extension: filepath.Ext(h3.Filename)},
-		{File: f4, Name: h4.Filename, Extension: filepath.Ext(h4.Filename)},
-	}, newProduct.Id)
+	img_names, err := helpers.ProcessImageAndReturnNames(productImages, newProduct.Id)
 	newProduct.Image_names = img_names
 
 	return newProduct, err

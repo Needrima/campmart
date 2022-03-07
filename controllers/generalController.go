@@ -13,12 +13,14 @@ import (
 
 var tpl = helpers.LoadTemplate()
 
+// redirects "/" to "/home"
 func RedirectToHome() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		http.Redirect(w, r, "/home", http.StatusSeeOther)
 	}
 }
 
+//gets cart item and store in temporaray database map on "POST" request
 func AddItemToCart() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		bs, err := ioutil.ReadAll(r.Body)
@@ -32,7 +34,8 @@ func AddItemToCart() httprouter.Handle {
 
 		product := middlewares.GetSingeProduct(id)
 
-		cartItem := middlewares.GetCartItemFomProduct(product, 1, "")
+		cartItem := middlewares.GetCartItemFomProduct(product, 1, product.Types[0])
+		fmt.Println(cartItem)
 
 		if err := helpers.AddToTemporaryCartDatabase(cartItem); err != nil {
 			w.Write([]byte(err.Error()))

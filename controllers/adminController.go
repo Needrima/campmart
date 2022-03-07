@@ -19,14 +19,18 @@ func NewProductGet() httprouter.Handle {
 	}
 }
 
+//gets new product from form input and stores in database
 func AddNewProduct() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		product, err := middlewares.CreateNewProduct(r)
+
+		//check if string non numeric values is submited for numeric value form field
 		if err == middlewares.ErrStringToInt {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
 
+		// check if file is not submitted for
 		if err == middlewares.ErrFormFile {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return

@@ -1,15 +1,13 @@
 package controllers
 
 import (
-	// "campmart/helpers"
 	"log"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-// var tpl = helpers.LoadTemplate()
-
+// get cart items from database and serves to cart page
 func CartGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		if err := tpl.ExecuteTemplate(w, "cart.html", nil); err != nil {

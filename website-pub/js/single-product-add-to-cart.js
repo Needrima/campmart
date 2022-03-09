@@ -9,7 +9,7 @@ cartBtn.addEventListener('click', () => {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "/single-product/add-to-cart", true);
+    xhr.open("POST", "/single/add-to-cart", true);
 
     console.log(id);
 

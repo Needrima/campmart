@@ -96,6 +96,30 @@
                         </td>
                         <td class="s-total"></td>
                     </tr>
+                    {{range .}}
+                    <tr>
+                        <td><a href="/remove-item/{{.Id}}"><i class="far fa-times-circle"></i></a></td>
+                        <td><img src="../website-pub/images/products/{{.Image_name}}" alt=""></td>
+                        <td>{{.Name}}</td>
+                        <td class="price">NGN{{.Price}}</td>
+                        <td><input type="number" value="{{.Quantity}}" class="qty"></td>
+                        <td>
+                            <select name="type" id="types">
+                                {{$s := .SelectedType}} {{/*had to assign .SelectedType to a variable after invoking "range" as the contents of "." gets assigned to "$" after invoking "range*/}}
+                                {{range $t := .Types}}
+
+                                {{if eq $s $t}}
+                                <option value="{{$t}}" selected>{{$t}}</option>
+                                {{else}}
+                                <option value="{{$t}}">{{$t}}</option>
+                                {{end}}
+
+                                {{end}}
+                            </select>
+                        </td>
+                        <td class="s-total"></td>
+                    </tr>
+                    {{end}}
                 </form> 
             </tbody>
         </table>

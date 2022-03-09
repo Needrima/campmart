@@ -8,4 +8,6 @@ import (
 
 func RegisterCartRoutes(r *httprouter.Router) {
 	r.GET("/cart", controller.CartGet())
+	r.POST("/add-to-cart", controller.AddItemToCart())
+	r.POST("/single/add-to-cart", controller.AddItemToCart())
 }

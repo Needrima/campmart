@@ -3,13 +3,13 @@ package models
 import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type CartItem struct {
-	Id            string
-	Image_name    string
-	Name          string
-	Price         int
-	Quantity      int
-	Types         []string
-	Selected_type string
+	Id           string
+	Image_name   string
+	Name         string
+	Price        int
+	Quantity     int
+	Types        []string
+	SelectedType string
 }
 
 type Order struct {

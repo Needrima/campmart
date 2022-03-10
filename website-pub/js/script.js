@@ -1,4 +1,5 @@
 // all pages script
+// navbar responsiveness
 const bar = document.querySelector('#bar');
 const nav = document.querySelector('#navbar');
 const cl = document.querySelector('#close');
@@ -15,16 +16,28 @@ if (cl) {
     })
 }
 
-let newsletterForm = document.querySelector('#newsletter-form');
+// subscription trial
+let subscriptionBtn = document.querySelector('#subscription-button')
 
-function newsletterSub() {
-    if (newsletterForm.value === '') {
-        alert('You did not input your E-mail!');
-        return false;
-    }
+subscriptionBtn.addEventListener('click', () => {
+    let email = document.querySelector('#newsletter-form').value;
+    console.log(email)
 
-    return true;
-}
+    let xhr = new XMLHttpRequest();    
+
+    xhr.open("POST", "/subscribe-to-newsletter", true);    
+
+    xhr.send(email); 
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            alert(xhr.responseText);
+        };
+    }; 
+})
+
 // all pages script end
+
+
 
 

@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"html/template"
+	"regexp"
 )
 
 // loads html templates
@@ -19,4 +20,8 @@ func FoundString(items []string, item string) bool {
 	}
 
 	return false
+}
+
+func ValidFormInput(input, exp string) bool {
+	return regexp.MustCompile(exp).MatchString(input)
 }

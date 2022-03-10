@@ -670,6 +670,11 @@ footer .copyright {
 #prodetails .single-pro-details button {
     background-color: #088178;
     color: #fff;
+    transition: 0.3s;
+}
+
+#prodetails .single-pro-details button:hover {
+    opacity: 0.7;
 }
 
 #prodetails .single-pro-details input:focus {

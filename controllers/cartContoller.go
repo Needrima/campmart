@@ -50,7 +50,7 @@ func CartGet() httprouter.Handle {
 }
 
 //gets items on the "/single-product/add-to-cart" path with AJAX and add to temporary cart database
-//check single-product-add-to-cart.js
+//check add-to-cart.js single-product-add-to-cart.js
 func AddItemToCart() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		var cartItem models.CartItem
@@ -58,7 +58,7 @@ func AddItemToCart() httprouter.Handle {
 		switch r.URL.Path {
 		// adding to cart through cart icon
 		// qty = 1, selected type will be first type in product types
-		case "/add-to-cart":  
+		case "/add-to-cart":
 			bs, err := ioutil.ReadAll(r.Body)
 			if err != nil {
 				log.Println("Error reading response body:", err)
@@ -143,5 +143,25 @@ func AddItemToCart() httprouter.Handle {
 		}
 
 		w.Write([]byte("item already in cart"))
+	}
+}
+
+func RemoveItemFromCart() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		id := ps.ByName("id")
+
+		cartCookie, err := r.Cookie("cart")
+		if err == http.ErrNoCookie {
+			http.Error(w, "something went wrong, try again later", http.StatusBadRequest)
+			return
+		}
+
+		cookieValue := cartCookie.Value
+
+		tempDB := database.TemporaryCartDB[cookieValue]
+
+		delete(tempDB, id)
+
+		http.Redirect(w, r, "/cart", http.StatusSeeOther)
 	}
 }

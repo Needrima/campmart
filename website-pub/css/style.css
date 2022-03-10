@@ -1000,6 +1000,14 @@ footer .copyright {
 }
 
 /*Cart page*/
+#page-header.cart-header {
+    background-image: url("../images/static/cart-header.jpg");
+    background-position: top 30% right 30%;
+}
+
+#page-header.cart-header h2, #page-header.cart-header p {
+    color: white;
+}
 
 #cart {
     overflow-x: auto;

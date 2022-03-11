@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"campmart/database"
+	"campmart/helpers"
 	"campmart/middlewares"
 	"campmart/models"
 	"fmt"
@@ -98,9 +99,18 @@ func AddItemToCart() httprouter.Handle {
 				log.Println("Invalid form input for qty")
 				w.Write([]byte("Could not add item to cart, something went wrong, try again later"))
 				return
+			} else if qty < 1 { // if user tries to send a request without going through the form
+				log.Println("Invalid form input for quantity")
+				w.Write([]byte("Invalid form input for quantity"))
+				return
 			}
 
 			product := middlewares.GetSingeProduct(id)
+			if !helpers.FoundString(product.Types, selectedType) { // if user tries to send a request without going through the form
+				log.Println("Invalid form input for selected type")
+				w.Write([]byte("Invalid form input for selected type"))
+				return
+			}
 
 			cartItem = middlewares.GetCartItemFomProduct(product, qty, selectedType)
 		}

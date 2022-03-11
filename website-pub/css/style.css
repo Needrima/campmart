@@ -1005,8 +1005,8 @@ footer .copyright {
     background-position: top 30% right 30%;
 }
 
-#page-header.cart-header h2, #page-header.cart-header p {
-    color: white;
+#page-header.cart-color h2, #page-header.cart-color p {
+    color: #fff;
 }
 
 #cart {

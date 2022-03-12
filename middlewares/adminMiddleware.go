@@ -7,12 +7,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var (
@@ -23,6 +25,12 @@ var (
 // CreateNewProduct creates new product from form inputs in new-product.html by admin.
 // Error occurs if a string text is given to a number field or a formfile err
 func CreateNewProduct(r *http.Request) (models.Product, error) {
+	wantedPassword := os.Getenv("campmartAdminPassword")
+	gottenPassword := r.FormValue("adminPassword")
+	if err := bcrypt.CompareHashAndPassword([]byte(wantedPassword), []byte(gottenPassword)); err != nil {
+		log.Println("Admin password error:", err.Error())
+		return models.Product{}, errors.New("YOU ARE NOT AN ADMIN")
+	}
 	var newProduct models.Product
 	var seller models.Seller
 

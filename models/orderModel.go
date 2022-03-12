@@ -13,8 +13,8 @@ type CartItem struct {
 }
 
 type Order struct {
-	DatabaseID   primitive.ObjectID `bson:"_id"`
-	Id           string             `bson:"id"`
-	Cart_items   []CartItem         `bson:"cart_items"`
-	Shipping_fee int                `bson:"shipping_fee, omitempty"`
+	DatabaseID   primitive.ObjectID  `bson:"_id"`
+	Id           string              `bson:"id"`
+	Cart_items   map[string]CartItem `bson:"cart_items"`
+	Shipping_fee int                 `bson:"shipping_fee, omitempty"`
 }

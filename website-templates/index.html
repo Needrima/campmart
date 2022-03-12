@@ -88,61 +88,7 @@
                 <img src="../website-pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='/single-product';">
 
                 <div class="des">
-                    <!-- <span>Adidas</span> -->
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
-
-            <div class="pro" >
-                <img src="../website-pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='/single-product';">
-
-                <div class="des">
-                    <!-- <span>Adidas</span> -->
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
-
-            <div class="pro" >
-                <img src="../website-pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='/single-product';">
-
-                <div class="des">
-                    <!-- <span>Adidas</span> -->
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
-
-            <div class="pro" >
-                <img src="../website-pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='/single-product';">
-
-                <div class="des">
-                    <!-- <span>Adidas</span> -->
+                    <span>Adidas</span>
                     <h5><a href="/single-product" style="text-decoration: none; color: black;">Plain Roundneck T-shirt</a></h5>
                     <div class="star">
                         <i class="fas fa-star"></i>
@@ -161,7 +107,7 @@
                 <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 
                 <div class="des">
-                    <!-- <span>Adidas</span> -->
+                    <span>{{.Brand}}</span>
                     <h5><a href="/single-product/{{.Id}}" style="text-decoration: none; color: black;">{{.Name}}</a></h5>
                     {{$rating := .Rating}}
                     <div class="star">
@@ -224,59 +170,42 @@
                 <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
             </div>
 
+            {{range .}}
             <div class="pro" >
-                <img src="../website-pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='/single-product';">
+                <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 
                 <div class="des">
-                    <!-- <span>Adidas</span> -->
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
+                    <span>{{.Brand}}</span>
+                    <h5><a href="/single-product/{{.Id}}" style="text-decoration: none; color: black;">{{.Name}}</a></h5>
+                    {{$rating := .Rating}}
                     <div class="star">
+                    {{if eq $rating 1}}                    
+                        <i class="fas fa-star"></i> 
+                    {{else if eq $rating 2}}
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i> 
+                    {{else if eq $rating 3}}
+                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i> 
+                        <i class="fas fa-star"></i> 
+                    {{else if eq $rating 4}}
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i> 
+                    {{else}}
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>                   
+                    {{end}}
                     </div>
-                    <h4>NGN5,000</h4>
+                    <h4>NGN{{.Price}}</h4>
                 </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
-
-            <div class="pro" >
-                <img src="../website-pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='/single-product';">
-
-                <div class="des">
-                    <!-- <span>Adidas</span> -->
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
-
-            <div class="pro" >
-                <img src="../website-pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='/single-product';">
-
-                <div class="des">
-                    <!-- <span>Adidas</span> -->
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
+                <a class="cart-link" value="{{.Id}}"><i class="fal fa-shopping-cart cart"> </i></a>
+            </div>    
+            {{end}}
         </div>
     </section>  
 

@@ -4,9 +4,9 @@ let qtyInput = document.querySelectorAll('.qty');
 
 function initValues() {
     let prices = document.querySelectorAll('.price'); // item price
-    let subtotals = document.querySelectorAll('.s-total'); // item subtotal  = price * qty
+    let subtotals = document.querySelectorAll('.s-total'); // item subtotal = price * qty
     
-    let cartTotal = document.querySelector('#cartTotal') // cart total
+    let cartTotal = document.querySelector('#cartTotal'); // cart total
     let shippingFee = document.querySelector('#shipping-fee').textContent; // shipping fee   
     let orderTotal = document.querySelector('#orderTotal'); // order total = cart total + shipping fee
     
@@ -16,7 +16,8 @@ function initValues() {
         //takout 'NGN' in front of price
         // get quantity
         // multiply price by qty and assign to a variable itemTotalValue
-        let price = parseInt(prices[index].textContent.slice(3));
+        let toSlice = 'NGN';
+        let price = parseInt(prices[index].textContent.slice(toSlice.length));
         let qty = qtyInput[index].value;                
         let itemTotalValue = price * qty;
 
@@ -33,7 +34,8 @@ function initValues() {
     // remove first three value from shipping fee
     // shipping value will be a string with value 'e' if value is free
     // or shipping value if not free
-    let shippingFeeValue = shippingFee.slice(3)
+    let toSlice = 'NGN';
+    let shippingFeeValue = shippingFee.slice(toSlice.length)
 
     let val = 0;// val to hold delivery fee
 
@@ -60,4 +62,26 @@ qtyInput.forEach(qty => {
 
         initValues();
     })
+})
+
+// when checkout button is clicked 
+// update tenporary cart database in server and redirect to /checkout
+
+let checkoutBtn = document.querySelector('#checkout-btn');
+checkoutBtn.addEventListener('click', () => {
+    alert('kfghjuyg')
+
+    // let xhr = new XMLHttpRequest();
+
+    // xhr.open("POST", "/add-to-cart", true);
+
+    // console.log(link.getAttribute('value'))
+
+    // xhr.send(link.getAttribute('value')); 
+
+    // xhr.onreadystatechange = function() {
+    //     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+    //         alert(xhr.responseText);
+    //     };
+    // };  
 })

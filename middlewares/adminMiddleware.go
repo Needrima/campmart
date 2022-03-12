@@ -20,7 +20,7 @@ var (
 	ErrFormFile    = errors.New("formfile error")
 )
 
-// create new product from form inputs in new-product.html
+// CreateNewProduct creates new product from form inputs in new-product.html
 func CreateNewProduct(r *http.Request) (models.Product, error) {
 	var newProduct models.Product
 	var seller models.Seller
@@ -40,9 +40,10 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 		return models.Product{}, ErrStringToInt
 	}
 	newProduct.Price = price
-	newProduct.Types = strings.Split(r.FormValue("productType"), ",")
+	newProduct.Types = strings.Split(strings.TrimSpace(r.FormValue("productType")), ",")
 	newProduct.Description = r.FormValue("productDescription")
-	newProduct.Properties = strings.Split(r.FormValue("productProperties"), ",")
+	newProduct.Properties = strings.Split(strings.TrimSpace(r.FormValue("productProperties")), ",")
+	newProduct.Category = r.FormValue("category")
 	rating, err := strconv.Atoi(r.FormValue("rating"))
 	if err != nil {
 		fmt.Printf("%v: for rating", ErrStringToInt.Error())
@@ -58,9 +59,9 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 		log.Println("Max memory err:", err)
 	}
 
-	form := r.MultipartForm
+	imgForm := r.MultipartForm
 
-	formFiles := form.File["img_files"]
+	formFiles := imgForm.File["img_files"]
 
 	// range over form file and get productimages for each file in form
 	var productImages []models.ProductImage
@@ -76,8 +77,8 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 		productImages = append(productImages, productImg)
 	}
 
-	img_names, err := helpers.ProcessImageAndReturnNames(productImages, newProduct.Id)
-	newProduct.Image_names = img_names
+	imgNames, err := helpers.ProcessImageAndReturnNames(productImages, newProduct.Id)
+	newProduct.Image_names = imgNames
 
 	return newProduct, err
 }

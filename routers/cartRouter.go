@@ -8,7 +8,8 @@ import (
 
 func RegisterCartRoutes(r *httprouter.Router) {
 	r.GET("/cart", controller.CartGet())
+	r.POST("/cart", controller.UpdateCartItems())
 	r.POST("/add-to-cart", controller.AddItemToCart())
-	r.POST("/single/add-to-cart", controller.AddItemToCart())
+	r.POST("/single-to-cart", controller.AddItemToCart())
 	r.GET("/remove-item-from-cart/:id", controller.RemoveItemFromCart())
 }

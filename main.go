@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 
-	// "github.com/satori/go.uuid"
 	"github.com/julienschmidt/httprouter"
 )
 
@@ -26,6 +25,11 @@ func main() {
 	router.RegisterSingleBlogRoutes(r)
 	router.RegisterCheckoutRoutes(r)
 
-	fmt.Println("Serving on port 8080. Visit localhost:8080 ....")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	fmt.Println("Serving on port 8080. Visit localhost:8008 ....")
+	server := http.Server{
+		Addr:    ":8008",
+		Handler: r,
+	}
+
+	log.Fatal(server.ListenAndServe())
 }

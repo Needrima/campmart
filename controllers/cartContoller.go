@@ -42,8 +42,6 @@ func CartGet() httprouter.Handle {
 			return
 		}
 
-		fmt.Println("CartItems:", cartItems)
-
 		if err := tpl.ExecuteTemplate(w, "cart.html", cartItems); err != nil {
 			log.Fatal("Exexcute Template cart.html:", err)
 		}
@@ -75,7 +73,7 @@ func AddItemToCart() httprouter.Handle {
 
 		// adding to cart through single-product.html page
 		// qty and selected type will be specified by user
-		case "/single/add-to-cart":
+		case "/single-to-cart":
 			bs, err := ioutil.ReadAll(r.Body)
 			if err != nil {
 				log.Println("Error reading response body:", err)
@@ -84,7 +82,7 @@ func AddItemToCart() httprouter.Handle {
 			}
 
 			data := string(bs) // Ex. "675030nvjdkshg84ndj 3 small"
-			fmt.Println("Data from frontend:", data)
+			// fmt.Println("Data from frontend:", data)
 
 			dataParts := strings.Split(data, " ")
 			if len(dataParts) != 3 {
@@ -120,10 +118,10 @@ func AddItemToCart() httprouter.Handle {
 		// see tempDB.go for temporary DB and orderModel.go for type CartItem
 		cartCookie, err := r.Cookie("cart")
 		if err == http.ErrNoCookie {
-			cookieId := uid.NewV4()
+			cookieID := uid.NewV4()
 			cookie := &http.Cookie{
 				Name:  "cart",
-				Value: cookieId.String(),
+				Value: cookieID.String(),
 			}
 			http.SetCookie(w, cookie)
 
@@ -173,5 +171,64 @@ func RemoveItemFromCart() httprouter.Handle {
 		delete(tempDB, id)
 
 		http.Redirect(w, r, "/cart", http.StatusSeeOther)
+	}
+}
+
+// UpadteCartItems update quantity of items in the cart and redirect user to checkout page
+func UpdateCartItems() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		cartCookie, err := r.Cookie("cart")
+		if err == http.ErrNoCookie {
+			http.Redirect(w, r, "/home", http.StatusSeeOther)
+			return
+		}
+
+		tempCartDB := database.TemporaryCartDB
+		usersDB := tempCartDB[cartCookie.Value]
+		if usersDB == nil || len(usersDB) == 0 { // user has no item in cart database
+			http.Redirect(w, r, "/home", http.StatusSeeOther)
+			return
+		}
+
+		fmt.Println("Database before update:", usersDB)
+
+		for id := range database.TemporaryCartDB[cartCookie.Value] {
+			formerQty, formerType := usersDB[id].Quantity, usersDB[id].SelectedType
+			updatedQty, updatedType := r.FormValue(id+"-qty"), r.FormValue(id+"-type")
+
+			// if user tries to send a request without going through the form
+			updatedQtyToInt, err := strconv.Atoi(updatedQty)
+			if err != nil {
+				log.Println("Invalid form input for qty")
+				http.Error(w, "Invalid qunatity", http.StatusBadRequest)
+				return
+			} else if updatedQtyToInt < 1 {
+				log.Println("Invalid form input for qty")
+				http.Error(w, "Invalid qunatity", http.StatusBadRequest)
+				return
+			}
+
+			if !helpers.FoundString(usersDB[id].Types, updatedType) {
+				log.Println("Invalid form input for type")
+				http.Error(w, "Invalid qunatity", http.StatusBadRequest)
+				return
+			}
+
+			if formerQty != updatedQtyToInt {
+				DbToUpdate := database.TemporaryCartDB[cartCookie.Value][id]
+				DbToUpdate.Quantity = updatedQtyToInt
+				database.TemporaryCartDB[cartCookie.Value][id] = DbToUpdate
+			}
+
+			if formerType != updatedType {
+				DbToUpdate := database.TemporaryCartDB[cartCookie.Value][id]
+				DbToUpdate.SelectedType = updatedType
+				database.TemporaryCartDB[cartCookie.Value][id] = DbToUpdate
+			}
+		}
+
+		fmt.Println("Database after update:", usersDB)
+
+		http.Redirect(w, r, "/checkout", http.StatusSeeOther)
 	}
 }

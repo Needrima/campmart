@@ -58,17 +58,17 @@
                 </tr>
             </thead>
             <tbody>
-                <form action="#">
+                <form id="checkout-form" method="post" action="/cart">
                     {{range .}}
                     <tr>
                         <td><a href="/remove-item-from-cart/{{.Id}}"><i class="far fa-times-circle"></i></a></td>
                         <td><img src="../website-pub/images/products/{{.Image_name}}" alt=""></td>
                         <td>{{.Name}}</td>
                         <td class="price">NGN{{.Price}}</td>
-                        <td><input type="number" value="{{.Quantity}}" class="qty"></td>
+                        <td><input type="number" value="{{.Quantity}}" class="qty" name="{{.Id}}-qty"></td>
                         <td>
-                            <select name="type" id="types">
-                                {{$s := .SelectedType}} {{/*had to assign .SelectedType to a variable after invoking "range" as the contents of "." gets assigned to "$" after invoking "range*/}}
+                            <select name="{{.Id}}-type" id="types">
+                                {{$s := .SelectedType}}
                                 {{range $t := .Types}}
 
                                 {{if eq $s $t}}
@@ -117,7 +117,7 @@
                     <td><strong id="orderTotal"></strong></td> <!--Value set by DOM manipation in cart.js-->
                 </tr> 
             </table>
-            <button class="normal" type="submit" onclick="window.location.href='checkout.html';">Checkout Order</button>
+            <button class="normal" type="submit" id="checkout-btn" form="checkout-form">Checkout Order</button>
         </div>
     </section>
 

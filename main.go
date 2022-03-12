@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -26,8 +27,12 @@ func main() {
 	router.RegisterCheckoutRoutes(r)
 
 	fmt.Println("Serving on port 8080. Visit localhost:8008 ....")
+	port := os.Getenv("PORT")
+	if port == "8008" {
+		port = ""
+	}
 	server := http.Server{
-		Addr:    ":8008",
+		Addr:    ":" + port,
 		Handler: r,
 	}
 

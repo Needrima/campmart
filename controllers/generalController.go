@@ -31,6 +31,10 @@ func SubscribeToNewsLetter() httprouter.Handle {
 
 		subscribersCollection := database.GetDatabaseCollection("subscribers")
 
+		if err := middlewares.SendWelcomeMessage(subscriber.Email); err != nil {
+			fmt.Println(err)
+		}
+
 		insertOneResult, err := subscribersCollection.InsertOne(context.TODO(), subscriber)
 		if err != nil {
 			fmt.Println("Error inserting subscriber to subscribers collection:", err)
@@ -38,7 +42,7 @@ func SubscribeToNewsLetter() httprouter.Handle {
 			return
 		}
 
-		fmt.Println("successfull added new subscriber with id:", insertOneResult.InsertedID)
+		fmt.Println("successfully added new subscriber with id:", insertOneResult.InsertedID)
 		w.Write([]byte("you have succesfully subscribed to our newsletter"))
 	}
 }

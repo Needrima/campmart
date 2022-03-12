@@ -1,15 +1,20 @@
 package middlewares
 
 import (
+	"bytes"
 	"campmart/database"
 	"campmart/helpers"
 	"campmart/models"
 	"context"
+	"crypto/tls"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+
+	gomail "gopkg.in/gomail.v2"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -62,4 +67,39 @@ func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 	}
 
 	return newSubcriber, nil
+}
+
+// SendWelcomeMessage sends message to new subscriber on successful subscription
+func SendWelcomeMessage(email string) error {
+	mail := gomail.NewMessage()
+
+	mail.SetHeader("From", mail.FormatAddress("emailservice@campmart.com", "The Campmart Team"))
+
+	mail.SetHeaders(map[string][]string{
+		"To":      {email},
+		"Subject": {"Welcome to Campmart"},
+	})
+
+	password := os.Getenv("emailPassword")
+
+	tpl := helpers.LoadTemplate()
+
+	msgBuffer := &bytes.Buffer{}
+	if err := tpl.ExecuteTemplate(msgBuffer, "welcomeEmail.html", nil); err != nil {
+		errBody := fmt.Sprintf("Error executing welcome mail template: %v", err.Error())
+		return errors.New(errBody)
+	}
+
+	mail.SetBody("text/html", msgBuffer.String())
+
+	dialer := gomail.NewDialer("smtp.gmail.com", 587, "oyebodeamirdeen@gmail.com", password)
+
+	dialer.TLSConfig = &tls.Config{InsecureSkipVerify: true}
+
+	if err := dialer.DialAndSend(mail); err != nil {
+		fmt.Println("Error sending mail:", err)
+		return errors.New("sending welcome message failed")
+	}
+
+	return nil
 }

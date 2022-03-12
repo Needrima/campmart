@@ -7,7 +7,8 @@ import (
 	"strings"
 )
 
-// processes product images and returns their names as stored in filesystem
+// ProcessImageAndReturnNames processes product images and returns their names as stored in filesystem.
+// See type ProductImage in productModel.go
 func ProcessImageAndReturnNames(productImages []models.ProductImage, productID string) ([]string, error) {
 	// range over the project images and store in path "website-pub/images/products"
 	for _, image := range productImages {
@@ -37,14 +38,14 @@ func ProcessImageAndReturnNames(productImages []models.ProductImage, productID s
 		return []string{}, err
 	}
 
-	// check for newly uploaded images and append ther names to img_names variable
-	var img_names []string
+	// check for newly uploaded images and append ther names to imgNames variable
+	var imgNames []string
 
 	for _, file := range filesInProductDir {
 		if strings.Contains(file.Name(), productID) {
-			img_names = append(img_names, file.Name())
+			imgNames = append(imgNames, file.Name())
 		}
 	}
 
-	return img_names, nil
+	return imgNames, nil
 }

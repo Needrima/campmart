@@ -8,7 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//get 8 random products from databse and serve to index.html
+// HomeGet gets 8 random products from database and serve to index.html
 func HomeGet() httprouter.Handle {
 
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {

@@ -20,7 +20,8 @@ var (
 	ErrFormFile    = errors.New("formfile error")
 )
 
-// CreateNewProduct creates new product from form inputs in new-product.html
+// CreateNewProduct creates new product from form inputs in new-product.html by admin.
+// Error occurs if a string text is given to a number field or a formfile err
 func CreateNewProduct(r *http.Request) (models.Product, error) {
 	var newProduct models.Product
 	var seller models.Seller
@@ -66,12 +67,12 @@ func CreateNewProduct(r *http.Request) (models.Product, error) {
 	// range over form file and get productimages for each file in form
 	var productImages []models.ProductImage
 
-	for _, file := range formFiles {
-		f, _ := file.Open()
+	for _, fileHeader := range formFiles {
+		f, _ := fileHeader.Open()
 		productImg := models.ProductImage{
 			File:      f,
-			Name:      file.Filename,
-			Extension: filepath.Ext(file.Filename),
+			Name:      fileHeader.Filename,
+			Extension: filepath.Ext(fileHeader.Filename),
 		}
 
 		productImages = append(productImages, productImg)

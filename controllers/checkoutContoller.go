@@ -8,6 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+// CheckoutGet get data from temporary cart database and place an order based on the items in the cart
 func CheckoutGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		cartCookie, err := r.Cookie("cart")

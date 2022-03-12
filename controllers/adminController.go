@@ -11,6 +11,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
+// NewProductGet serves the new-product.html page to browser to add new product for sale
 func NewProductGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		if err := tpl.ExecuteTemplate(w, "new-product.html", nil); err != nil {
@@ -19,7 +20,7 @@ func NewProductGet() httprouter.Handle {
 	}
 }
 
-//get new product from form input and add to database
+// AddNewProduct creates a new product from form submitted by admin and stores in database
 func AddNewProduct() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		product, err := middlewares.CreateNewProduct(r)

@@ -9,7 +9,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//gets product by id and 4 randoms products as suggestions for serve to single-product.html
+// SingleProductGet gets product by id and 4 randoms products as suggestions and serves to single-product.html
 func SingleProductGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		id := ps.ByName("id")

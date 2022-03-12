@@ -11,7 +11,7 @@ type Product struct {
 	Id          string             `bson:"id"`
 	Name        string             `bson:"name"`
 	Price       int                `bson:"price"`
-	Types       []string           `bson:"type, omitempty"` //comma seperated values
+	Types       []string           `bson:"type"` //comma seperated values
 	Image_names []string           `bson:"image_names"`
 	Description string             `bson:"description"`
 	Properties  []string           `bson:"properties, omitempty"` //comma seperated values

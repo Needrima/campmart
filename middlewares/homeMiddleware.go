@@ -9,7 +9,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func GetHomeProducts() []models.Product { // gets 8 random prodicts for home page
+// GetHomeProducts reurn 8 random products to be served to index.html
+func GetHomeProducts() []models.Product {
 	collection := database.GetDatabaseCollection("products")
 
 	var products []models.Product

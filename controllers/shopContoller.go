@@ -8,8 +8,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-// var tpl = helpers.LoadTemplate()
-
+// ShopGet gets 16 random products from database and serve to shop.html
 func ShopGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		if err := tpl.ExecuteTemplate(w, "shop.html", nil); err != nil {

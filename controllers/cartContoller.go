@@ -16,7 +16,8 @@ import (
 	uid "github.com/satori/go.uuid"
 )
 
-// get cart items from temmporary database database and serves to cart page
+// CartGet gets cart items from temporary database and serves to cart page.
+// See var TemporaryCartDB in tempDB.go
 func CartGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		cartCookie, err := r.Cookie("cart")
@@ -48,8 +49,11 @@ func CartGet() httprouter.Handle {
 	}
 }
 
-//gets items on the "/single-product/add-to-cart" path with AJAX and add to temporary cart database
-//check add-to-cart.js single-product-add-to-cart.js
+// AddItemToCart adds a new item to temporary cart database on two paths "/add-to-cart"
+// and "/single-to-cart". See var TemporaryCartDB in tempDB.go
+// "/add-to-cart" is called when users clicks the cart icon without specifying the quantity and type.
+// "/single-to-cart" is called when users adds an item to cart from single-product.html(specifying the type and quantity).
+// Both paths work with AJAX calls. Check add-to-cart.js and single-product-add-to-cart.js
 func AddItemToCart() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		var cartItem models.CartItem
@@ -154,6 +158,8 @@ func AddItemToCart() httprouter.Handle {
 	}
 }
 
+// RemoveItemFromCart removes an item from cart by deleting it from the temporary cart database
+// See var TemporaryCartDB in tempDB.go
 func RemoveItemFromCart() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		id := ps.ByName("id")
@@ -170,11 +176,19 @@ func RemoveItemFromCart() httprouter.Handle {
 
 		delete(tempDB, id)
 
+		fmt.Println(len(tempDB))
+
+		// if user has no item in cart anymore
+		// delete cart from temporarydatabase to free up space
+		if len(tempDB) == 0 {
+			delete(database.TemporaryCartDB, cookieValue)
+		}
+
 		http.Redirect(w, r, "/cart", http.StatusSeeOther)
 	}
 }
 
-// UpadteCartItems update quantity of items in the cart and redirect user to checkout page
+// UpdateCartItems update quantity and type of items in the cart and before a user checksout the product
 func UpdateCartItems() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		cartCookie, err := r.Cookie("cart")

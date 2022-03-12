@@ -15,6 +15,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+// CreateNewSubscriber return a new subscriber from email from form input.
+// See type Subscriber
 func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 
 	bs, err := ioutil.ReadAll(r.Body)
@@ -36,6 +38,7 @@ func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 		fmt.Println("subscriber cursor error:", err)
 		return models.Subscriber{}, errors.New("something went wrong, try again later")
 	}
+
 	for subscribersCursor.Next(context.TODO()) {
 		var s models.Subscriber
 

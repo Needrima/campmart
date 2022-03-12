@@ -69,8 +69,10 @@
             <div>
                 {{.Description}}
                 <ul>
-                    {{range .Properties}}
-                    <li>{{.}}</li>
+                    {{if .Properties}}
+                        {{range .Properties}}
+                            <li>{{.}}</li>
+                        {{end}}
                     {{end}}
                 </ul>
             </div>

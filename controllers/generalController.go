@@ -13,13 +13,14 @@ import (
 
 var tpl = helpers.LoadTemplate()
 
-// redirects "/" to "/home"
+// RedirectToHome redirects "/" to "/home"
 func RedirectToHome() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		http.Redirect(w, r, "/home", http.StatusSeeOther)
 	}
 }
 
+// SubscribeToNewsLetter registers a new subscriber and sends an email to subscriber on successful registration
 func SubscribeToNewsLetter() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		subscriber, err := middlewares.CreateNewSubscriber(r)

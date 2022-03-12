@@ -12,7 +12,7 @@ import (
 
 var productsCollection = database.GetDatabaseCollection("products")
 
-// get single product based on id
+// GetSingeProduct returns a single product based on id from products collection
 func GetSingeProduct(id string) models.Product {
 	var product models.Product
 
@@ -31,7 +31,7 @@ func GetSingeProduct(id string) models.Product {
 	return product
 }
 
-// get 4 random product as suggestions for single-product.html
+// GetSuggestionsProducts get 4 random products as suggestions for single-product.html
 func GetSuggestionsProducts() []models.Product {
 	var products []models.Product
 

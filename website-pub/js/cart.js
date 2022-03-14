@@ -63,25 +63,3 @@ qtyInput.forEach(qty => {
         initValues();
     })
 })
-
-// when checkout button is clicked 
-// update tenporary cart database in server and redirect to /checkout
-
-let checkoutBtn = document.querySelector('#checkout-btn');
-checkoutBtn.addEventListener('click', () => {
-    alert('kfghjuyg')
-
-    // let xhr = new XMLHttpRequest();
-
-    // xhr.open("POST", "/add-to-cart", true);
-
-    // console.log(link.getAttribute('value'))
-
-    // xhr.send(link.getAttribute('value')); 
-
-    // xhr.onreadystatechange = function() {
-    //     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    //         alert(xhr.responseText);
-    //     };
-    // };  
-})

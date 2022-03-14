@@ -28,8 +28,8 @@ func main() {
 
 	fmt.Println("Serving on port 8080. Visit localhost:8008 ....")
 	port := os.Getenv("PORT")
-	if port == "8008" {
-		port = ""
+	if port == "" {
+		port = "8008"
 	}
 	server := http.Server{
 		Addr:    ":" + port,

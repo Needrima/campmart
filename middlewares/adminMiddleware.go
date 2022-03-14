@@ -26,40 +26,41 @@ var (
 // Error occurs if a string text is given to a number field or a formfile err
 func CreateNewProduct(r *http.Request) (models.Product, error) {
 	wantedPassword := os.Getenv("campmartAdminPassword")
-	gottenPassword := r.FormValue("adminPassword")
+	gottenPassword := strings.TrimSpace(r.FormValue("adminPassword"))
 	if err := bcrypt.CompareHashAndPassword([]byte(wantedPassword), []byte(gottenPassword)); err != nil {
 		log.Println("Admin password error:", err.Error())
 		return models.Product{}, errors.New("YOU ARE NOT AN ADMIN")
 	}
+
 	var newProduct models.Product
 	var seller models.Seller
 
 	seller.DatabaseID = primitive.NewObjectID()
 	seller.Id = seller.DatabaseID.Hex()
-	seller.Seller_name = r.FormValue("sellerName")
-	seller.Seller_email = r.FormValue("sellerEmail")
-	seller.Seller_phone = r.FormValue("sellerPhone")
+	seller.Seller_name = strings.TrimSpace(r.FormValue("sellerName"))
+	seller.Seller_email = strings.TrimSpace(r.FormValue("sellerEmail"))
+	seller.Seller_phone = strings.TrimSpace(r.FormValue("sellerPhone"))
 
 	newProduct.DatabaseID = primitive.NewObjectID()
 	newProduct.Id = newProduct.DatabaseID.Hex()
-	newProduct.Name = r.FormValue("productName")
-	price, err := strconv.Atoi(r.FormValue("productPrice"))
+	newProduct.Name = strings.TrimSpace(r.FormValue("productName"))
+	price, err := strconv.Atoi(strings.TrimSpace(r.FormValue("productPrice")))
 	if err != nil {
 		fmt.Printf("%v: for price", ErrStringToInt.Error())
 		return models.Product{}, ErrStringToInt
 	}
 	newProduct.Price = price
 	newProduct.Types = strings.Split(strings.TrimSpace(r.FormValue("productType")), ",")
-	newProduct.Description = r.FormValue("productDescription")
+	newProduct.Description = strings.TrimSpace(r.FormValue("productDescription"))
 	newProduct.Properties = strings.Split(strings.TrimSpace(r.FormValue("productProperties")), ",")
-	newProduct.Category = r.FormValue("category")
-	rating, err := strconv.Atoi(r.FormValue("rating"))
+	newProduct.Category = strings.TrimSpace(r.FormValue("category"))
+	rating, err := strconv.Atoi(strings.TrimSpace(r.FormValue("rating")))
 	if err != nil {
 		fmt.Printf("%v: for rating", ErrStringToInt.Error())
 		return models.Product{}, ErrStringToInt
 	}
 	newProduct.Rating = rating
-	newProduct.Brand = r.FormValue("brandName")
+	newProduct.Brand = strings.TrimSpace(r.FormValue("brandName"))
 	newProduct.Date_added = time.Now().Format(time.ANSIC)
 	newProduct.Seller = seller
 

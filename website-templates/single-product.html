@@ -57,11 +57,18 @@
             <h4>{{.Name}}</h4>
             <h2>NGN{{.Price}}</h2>
             <!-- <form id="{{.}}" action="/single-product/add-to-cart" method="post"> -->
-                <select name="type" id="types">
-                    {{range .Types}}
-                    <option value="{{.}}">{{.}}</option>
-                    {{end}}
-                </select>
+                {{if .Types}}
+                        <select name="type" id="types">
+                            {{range .Types}}
+                            <option value="{{.}}">{{.}}</option>
+                            {{end}}
+                        </select>
+                    {{else}}
+                    <select name="type" id="types">
+                        <option value="none">none</option>
+                    </select>
+                {{end}}
+                
                 <input type="number" value="1" id="product-qty" name="qty">
                 <a value="{{.Id}}" id="cart-btn"><button class="normal">Add To Cart</button></a>
             <!-- </form> -->

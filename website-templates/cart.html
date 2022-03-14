@@ -67,18 +67,24 @@
                         <td class="price">NGN{{.Price}}</td>
                         <td><input type="number" value="{{.Quantity}}" class="qty" name="{{.Id}}-qty"></td>
                         <td>
-                            <select name="{{.Id}}-type" id="types">
-                                {{$s := .SelectedType}}
-                                {{range $t := .Types}}
-
-                                {{if eq $s $t}}
-                                <option value="{{$t}}" selected>{{$t}}</option>
-                                {{else}}
-                                <option value="{{$t}}">{{$t}}</option>
-                                {{end}}
-
-                                {{end}}
-                            </select>
+                            {{$s := .SelectedType}}
+                            {{if .Types}}
+                                
+                                <select name="{{.Id}}-type" id="types">  
+                                    {{range $t := .Types}}         
+                                        {{if eq $s $t}}
+                                            <option value="{{$t}}" selected>{{$t}}</option>
+                                        {{else}}
+                                            <option value="{{$t}}">{{$t}}</option>
+                                        {{end}} 
+                                    {{end}}                               
+                                </select>
+                                
+                            {{else}}
+                                <select name="{{.Id}}-type" id="types">           
+                                    <option value="none">none</option>                           
+                                </select>
+                            {{end}}
                         </td>
                         <td class="s-total"></td> <!--Value set by DOM manipation in cart.js-->
                     </tr>

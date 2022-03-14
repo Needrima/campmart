@@ -26,13 +26,7 @@ func AddNewProduct() httprouter.Handle {
 		product, err := middlewares.CreateNewProduct(r)
 
 		//check if string non numeric values is submited for numeric value form field
-		if err == middlewares.ErrStringToInt {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
-		}
-
-		// check if file is not submitted for
-		if err == middlewares.ErrFormFile {
+		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}

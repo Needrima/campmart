@@ -70,7 +70,7 @@ func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 }
 
 // SendWelcomeMessage sends message to new subscriber on successful subscription
-func SendWelcomeMessage(email string) error {
+func SendWelcomeMessage(email, templateName string, data interface{}) error {
 	mail := gomail.NewMessage()
 
 	mail.SetHeader("From", mail.FormatAddress("emailservice@campmart.com", "The Campmart Team"))
@@ -85,7 +85,7 @@ func SendWelcomeMessage(email string) error {
 	tpl := helpers.LoadTemplate()
 
 	msgBuffer := &bytes.Buffer{}
-	if err := tpl.ExecuteTemplate(msgBuffer, "welcomeEmail.html", nil); err != nil {
+	if err := tpl.ExecuteTemplate(msgBuffer, templateName, data); err != nil {
 		errBody := fmt.Sprintf("Error executing welcome mail template: %v", err.Error())
 		return errors.New(errBody)
 	}

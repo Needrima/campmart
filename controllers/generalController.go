@@ -31,7 +31,7 @@ func SubscribeToNewsLetter() httprouter.Handle {
 
 		subscribersCollection := database.GetDatabaseCollection("subscribers")
 
-		if err := middlewares.SendWelcomeMessage(subscriber.Email, "welcomeEmail.html", nil); err != nil {
+		if err := middlewares.SendMail(subscriber.Email, "welcomeEmail.html", nil); err != nil {
 			fmt.Println(err)
 		}
 

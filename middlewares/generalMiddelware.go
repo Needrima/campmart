@@ -70,7 +70,7 @@ func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 }
 
 // SendWelcomeMessage sends message to new subscriber on successful subscription
-func SendWelcomeMessage(email, templateName string, data interface{}) error {
+func SendMail(email, templateName string, data interface{}) error {
 	mail := gomail.NewMessage()
 
 	mail.SetHeader("From", mail.FormatAddress("emailservice@campmart.com", "The Campmart Team"))

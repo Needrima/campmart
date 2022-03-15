@@ -3,7 +3,7 @@ package database
 import (
 	"context"
 	"log"
-	// "os"
+	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -12,9 +12,9 @@ import (
 
 // initialized connection to mongoDB and returns a database instance
 func initializeDB() *mongo.Database {
-	shellURI := "mongodb://localhost:27017"
-	// atlasURI := os.Getenv("atlasURI")
-	clientOptions := options.Client().ApplyURI(shellURI)
+	// shellURI := "mongodb://localhost:27017"
+	atlasURI := os.Getenv("atlasURI")
+	clientOptions := options.Client().ApplyURI(atlasURI)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {

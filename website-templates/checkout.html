@@ -40,12 +40,12 @@
     </section>  
 
     <section class="section-p1" id="checkout">
-        <form action="#">
+        <form action="/checkout" method="post">
             <h3>CHECKOUT YOUR ORDER</h3>
-            <input id="buyerName" type="text" placeholder="Your Name *">
-            <input id="buyerEmail" type="text" placeholder="Your E-mail *">
-            <input id="buyerPhone" type="text" placeholder="Your phone number *">
-            <textarea id="comment" name="" id="" cols="30" rows="10" placeholder="Optional Comment"></textarea>
+            <input name="buyers_name"  id="buyerName" type="text" placeholder="Your Name *">
+            <input name="buyers_email" id="buyerEmail" type="text" placeholder="Your E-mail *">
+            <input name="buyers_number" id="buyerPhone" type="number" placeholder="Your phone number *">
+            <textarea id="comment" name="checkout_comment" id="" cols="30" rows="10" placeholder="Optional Comment"></textarea>
             <button class="normal" type="submit">Place Order</button>
         </form>
     </section>
@@ -224,5 +224,11 @@
         })
     </script>
     <!---->
+
+    {{if .}}
+        <script>
+            alert({{.}})
+        </script>
+    {{end}}
 </body>
 </html>

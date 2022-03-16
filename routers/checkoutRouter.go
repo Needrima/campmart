@@ -8,4 +8,5 @@ import (
 
 func RegisterCheckoutRoutes(r *httprouter.Router) {
 	r.GET("/checkout", controller.CheckoutGet())
+	r.POST("/checkout", controller.PlaceNewOrder())
 }

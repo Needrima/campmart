@@ -204,7 +204,7 @@ func UpdateCartItems() httprouter.Handle {
 			return
 		}
 
-		fmt.Println("Database before update:", usersDB)
+		// fmt.Println("Database before update:", usersDB)
 
 		for id := range database.TemporaryCartDB[cartCookie.Value] {
 			formerQty, formerType := usersDB[id].Quantity, usersDB[id].SelectedType
@@ -241,7 +241,7 @@ func UpdateCartItems() httprouter.Handle {
 			}
 		}
 
-		fmt.Println("Database after update:", usersDB)
+		// fmt.Println("Database after update:", usersDB)
 
 		http.Redirect(w, r, "/checkout", http.StatusSeeOther)
 	}

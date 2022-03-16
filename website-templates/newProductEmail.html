@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product officially on campmart</title>
+</head>
+<body>
+    <div>
+        <h2>Hi {{.Seller_name}},</h2> 
+    </div>
+
+    <br>
+
+    <div>
+        <p>Your product has been successfully added to Campmart. Below are the details for your cross checking.</p>
+    </div>
+
+    <br>
+
+    <div>
+        <table border="2">
+            <tr>
+                <th>Name</th>
+                <td>{{.Name}}</td>
+            </tr>
+
+            <tr>
+                <th>Product Id</th>
+                <td>{{.Id}}</td>
+            </tr>
+
+            <tr>
+                <th>Price</th>
+                <td>{{.Price}}</td>
+            </tr>
+
+            <tr>
+                <th>Seller's Name</th>
+                <td>{{.Seller_name}}</td>
+            </tr>
+
+            <tr>
+                <th>Seller's Phone Number</th>
+                <td>{{.Seller_phone}}</td>
+            </tr>
+
+            <tr>
+                <th>Sellers's Email</th>
+                <td>{{.Seller_email}}</td>
+            </tr>
+
+            <tr>
+                <th>Types available</th>
+                <td>
+                    {{range .Types}}
+                    <li>{{.}}</li>
+                    {{end}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <br>
+
+    <div>
+        <p> If their is an unsatisfactory detail, do not hesitate to contact Campmart by replying this email or using our contact phone numbers.</p>
+    </div>
+
+    <br>
+    
+    <div style="font-weight: bolder;">
+        <i>THE CAMPMART TEAM</i>
+    </div>
+    
+</body>
+</html>

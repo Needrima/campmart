@@ -84,7 +84,7 @@
         <p>Just For You</p>
 
         <div class="pro-container">
-            <div class="pro" >
+            <!-- <div class="pro" >
                 <img src="../website-pub/images/products/roundneck 3.jpeg" alt onclick="window.location.href='/single-product';">
 
                 <div class="des">
@@ -100,9 +100,9 @@
                     <h4>NGN5,000</h4>
                 </div>
                 <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
+            </div> -->
             
-            {{range .}}
+            {{range slice . 0 4}}
             <div class="pro" >
                 <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 
@@ -152,11 +152,11 @@
         <p>Latest Products</p>
 
         <div class="pro-container">
-            <div class="pro" >
+            <!-- <div class="pro" >
                 <img src="../website-pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='/single-product';">
 
                 <div class="des">
-                    <!-- <span>Adidas</span> -->
+                    <span>Adidas</span>
                     <h5><a href="/single-product" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
                     <div class="star">
                         <i class="fas fa-star"></i>
@@ -168,9 +168,9 @@
                     <h4>NGN5,000</h4>
                 </div>
                 <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>
+            </div> -->
 
-            {{range .}}
+            {{range slice . 4 8}}
             <div class="pro" >
                 <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 

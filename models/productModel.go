@@ -19,7 +19,7 @@ type Product struct {
 	Rating      int                `bson:"rating"`
 	Brand       string             `bson:"brand, omitempty"`
 	Date_added  string             `bson:"date_added"`
-	Seller      Seller             `bson:"seller"`
+	Seller                   `bson:"seller"`
 }
 
 type ProductImage struct {

@@ -1,4 +1,4 @@
-git apackage database
+package database
 
 import (
 	"context"

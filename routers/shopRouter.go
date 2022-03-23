@@ -8,4 +8,5 @@ import (
 
 func RegisterShopRoutes(r *httprouter.Router) {
 	r.GET("/shop", controller.ShopGet())
+	r.POST("/searchtry", controller.SearchSuggestions())
 }

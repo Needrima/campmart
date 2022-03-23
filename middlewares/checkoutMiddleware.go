@@ -51,7 +51,7 @@ func CreateNewOrder(r *http.Request, usersCartDB map[string]models.CartItem) (mo
 		BuyersName:      buyersName,
 		BuyersEmail:     buyersEmail,
 		BuyersNumber:    buyersNumber,
-		BuyersAddress: 	 buyersAddress,
+		BuyersAddress:   buyersAddress,
 		OptionalComment: optionalComment,
 		ShippingFee:     0,
 	}

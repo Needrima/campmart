@@ -38,3 +38,9 @@ func SearchSuggestions() httprouter.Handle {
 		json.NewEncoder(w).Encode(suggestions)
 	}
 }
+
+func ChangePage() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		http.Redirect(w, r, "/shop", http.StatusSeeOther)
+	}
+}

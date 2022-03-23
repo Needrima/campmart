@@ -74,6 +74,10 @@ func PlaceNewOrder() httprouter.Handle {
 			return
 		}
 
+		if err := middlewares.SendMail(newOrder.BuyersEmail, "sucessfulOrderEmail.html", newOrder); err != nil {
+			log.Println("Error sending successful order mail:", err)
+		}
+
 		fmt.Printf("new order placed with id %v\n", insertOneResult.InsertedID)
 
 		http.Redirect(w, r, "/shop", http.StatusSeeOther)

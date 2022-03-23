@@ -33,6 +33,12 @@ func CreateNewOrder(r *http.Request, usersCartDB map[string]models.CartItem) (mo
 
 	buyersNumber = "+234" + buyersNumber[1:]
 
+	buyersAddress, exp := r.FormValue("buyers_address"), `^[a-zA-Z0-9\s,]{3,}$`
+	if !helpers.ValidFormInput(buyersAddress, exp) {
+		log.Printf("invalid delivery address %v\n", buyersNumber)
+		return models.Order{}, errors.New("we suspect that you did not input your full delivery address")
+	}
+
 	optionalComment := r.FormValue("checkout_comment")
 
 	databaseId := primitive.NewObjectID()
@@ -45,6 +51,7 @@ func CreateNewOrder(r *http.Request, usersCartDB map[string]models.CartItem) (mo
 		BuyersName:      buyersName,
 		BuyersEmail:     buyersEmail,
 		BuyersNumber:    buyersNumber,
+		BuyersAddress: 	 buyersAddress,
 		OptionalComment: optionalComment,
 		ShippingFee:     0,
 	}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Successfully placed order</title>
+</head>
+<body>
+    <div>
+        <h2>Hi {{.BuyersName}},</h2> 
+    </div>
+
+    <br>
+
+    <div>
+        <p>Your order has been successfully place. Below is the order information for your reference.</p>
+    </div>
+
+    <br>
+
+    <div>
+        <table border="2">
+            <caption>Delivery Information</caption>
+            <tr>
+                <th>Recipient's Name</th>
+                <td>{{.BuyersName}}</td>
+            </tr>
+
+            <tr>
+                <th>Recipient's Phone Number</th>
+                <td>{{.BuyersNumber}}</td>
+            </tr>
+
+            <tr>
+                <th>Recipient's Address</th>
+                <td>{{.BuyersAddress}}</td>
+            </tr>
+
+            <tr>
+                <th>Shipping Fee</th>
+                <td>WILL BE COMMUNICATED ON DELIVERY</td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <div>
+        <Table border="2">
+            <caption>Order Information</caption>
+
+            {{range .CartItems}}
+                <tr>
+                    <th>Item Name</th>
+                    <td>{{.Name}}</td>
+                </tr>
+
+                <tr>
+                    <th>Price</th>
+                    <td>NGN{{.Price}}</td>
+                </tr>
+
+                <tr>
+                    <th>Quantity</th>
+                    <td>{{.Quantity}}</td>
+                </tr>
+
+                {{if .SelectedType}}
+                <tr>
+                    <th>SelectedType</th>
+                    <td>{{.SelectedType}}</td>
+                </tr>
+                {{end}}
+
+            {{end}}
+
+            <tr>
+                <th style="font-weight: 700;">Total To Pay:</th>
+                <td>NGN{{.OrderTotal}}</td>
+            </tr>
+        </Table>
+    </div>
+    
+    <br>
+
+    <div>
+        <p> Please note that delivery is free for recipients within UNILAG, FCE and YABATECH. For recipients else where, delievery charge differs based on location recipients's location. If their is an unsatisfactory detail, do not hesitate to contact us on our customer service contact numbers.</p>
+    </div>
+
+    <br>
+    
+    <div style="font-weight: bolder;">
+        <i>THE CAMPMART TEAM</i>
+    </div>
+    
+</body>
+</html>

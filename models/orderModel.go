@@ -19,6 +19,7 @@ type Order struct {
 	BuyersName      string              `bson:"buyers_name"`
 	BuyersEmail     string              `bson:"buyers_email"`
 	BuyersNumber    string              `bson:"buyers_number"`
+	BuyersAddress   string              `bson:"buyers_address"`
 	OptionalComment string              `bson:"optional_comment, omitempty"`
 	ShippingFee     int                 `bson:"shipping_fee, omitempty"`
 	OrderTotal      int                 `bson:"order_total"`

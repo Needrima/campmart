@@ -145,69 +145,7 @@
         <h4>Don't forget to signup for our newsletter</h4>
         <h2>And stand to get <span>30% Off</span> - Any Product you choose</h2>
         <a href="#newsletter"><button class="normal">Signup now</button></a>
-    </section>
-
-    <section id="product1" class="section-p1">
-        <h2>New Arrivals</h2>
-        <p>Latest Products</p>
-
-        <div class="pro-container">
-            <!-- <div class="pro" >
-                <img src="../website-pub/images/products/tshirt 1.jpeg" alt="" onclick="window.location.href='/single-product';">
-
-                <div class="des">
-                    <span>Adidas</span>
-                    <h5><a href="/single-product" style="text-decoration: none; color: black;">Checkered T-shirt</a></h5>
-                    <div class="star">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h4>NGN5,000</h4>
-                </div>
-                <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div> -->
-
-            {{range .}}
-            <div class="pro" >
-                <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
-
-                <div class="des">
-                    <span>{{.Brand}}</span>
-                    <h5><a href="/single-product/{{.Id}}" style="text-decoration: none; color: black;">{{.Name}}</a></h5>
-                    {{$rating := .Rating}}
-                    <div class="star">
-                    {{if eq $rating 1}}                    
-                        <i class="fas fa-star"></i> 
-                    {{else if eq $rating 2}}
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> 
-                    {{else if eq $rating 3}}
-                        <i class="fas fa-star"></i> 
-                        <i class="fas fa-star"></i> 
-                        <i class="fas fa-star"></i> 
-                    {{else if eq $rating 4}}
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i> 
-                    {{else}}
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>                   
-                    {{end}}
-                    </div>
-                    <h4>NGN{{.Price}}</h4>
-                </div>
-                <a class="cart-link" value="{{.Id}}"><i class="fal fa-shopping-cart cart"> </i></a>
-            </div>    
-            {{end}}
-        </div>
-    </section>  
+    </section> 
 
     <section id="sm-banner" class="section-p1">
         <div class="banner-box">

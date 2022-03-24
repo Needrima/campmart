@@ -44,7 +44,7 @@ func AddNewProduct() httprouter.Handle {
 
 		successMsg := fmt.Sprintf("Successfully added product with id %v", insertOneResult.InsertedID)
 
-		if err := middlewares.SendMail(product.Seller_email, "newProductEmail.html", product); err != nil {
+		if err := middlewares.SendMail(product.Seller_email, "newProductEmail.html", "Successfully placed order", product); err != nil {
 			log.Println("Error sending mail on adding new product:", err.Error())
 		}
 

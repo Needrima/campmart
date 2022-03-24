@@ -74,7 +74,7 @@ func PlaceNewOrder() httprouter.Handle {
 			return
 		}
 
-		if err := middlewares.SendMail(newOrder.BuyersEmail, "sucessfulOrderEmail.html", newOrder); err != nil {
+		if err := middlewares.SendMail(newOrder.BuyersEmail, "sucessfulOrderEmail.html", "Your order has been placed", newOrder); err != nil {
 			log.Println("Error sending successful order mail:", err)
 		}
 

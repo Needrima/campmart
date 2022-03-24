@@ -26,11 +26,12 @@ func main() {
 	router.RegisterSingleBlogRoutes(r)
 	router.RegisterCheckoutRoutes(r)
 
-	fmt.Println("Serving on port 8080. Visit localhost:8008 ....")
+	fmt.Println("Serving on port 8008. Visit localhost:8008 ....")
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8008"
 	}
+
 	server := http.Server{
 		Addr:    ":" + port,
 		Handler: r,

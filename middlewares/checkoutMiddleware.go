@@ -13,7 +13,7 @@ import (
 // CreateNewOrder return a new order with information from form from frontend
 // See type Order struct{} in models folder
 func CreateNewOrder(r *http.Request, usersCartDB map[string]models.CartItem) (models.Order, error) {
-	buyersName, exp := r.FormValue("buyers_name"), `^[a-zA-Z]{3,}$`
+	buyersName, exp := r.FormValue("buyers_name"), `^[a-zA-Z\s]{3,}$`
 	if !helpers.ValidFormInput(buyersName, exp) {
 		log.Printf("invalid buyers name %v\n", buyersName)
 		return models.Order{}, errors.New("invalid name, only english alphabets allowed with atleast three characters")

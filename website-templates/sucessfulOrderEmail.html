@@ -49,29 +49,26 @@
     <div>
         <Table border="2">
             <caption>Order Information</caption>
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>SelectedType</th>
+            </tr>
 
             {{range .CartItems}}
                 <tr>
-                    <th>Item Name</th>
                     <td>{{.Name}}</td>
-                </tr>
-
-                <tr>
-                    <th>Price</th>
+                
                     <td>NGN{{.Price}}</td>
-                </tr>
 
-                <tr>
-                    <th>Quantity</th>
-                    <td>{{.Quantity}}</td>
-                </tr>
+                    <td>{{.Quantity}}</td>                
 
                 {{if .SelectedType}}
-                <tr>
-                    <th>SelectedType</th>
-                    <td>{{.SelectedType}}</td>
-                </tr>
+                    <td>{{.SelectedType}}</td>                
                 {{end}}
+
+                </tr>
 
             {{end}}
 
@@ -90,7 +87,7 @@
 
     <br>
     
-    <div style="font-weight: bolder;">
+    <div style="font-weight: bolder; color: red;">
         <i>THE CAMPMART TEAM</i>
     </div>
     

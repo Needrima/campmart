@@ -13,6 +13,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	gomail "gopkg.in/gomail.v2"
 
@@ -52,7 +53,7 @@ func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 			continue
 		}
 
-		if s.Email == email {
+		if strings.EqualFold(s.Email, email) {
 			fmt.Println("User already a subscriber")
 			return models.Subscriber{}, errors.New("you are already a subscriber")
 		}

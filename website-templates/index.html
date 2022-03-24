@@ -102,7 +102,8 @@
                 <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
             </div> -->
             
-            {{range slice . 0 4}}
+            {{$firstFour := slice . 0 4}}
+            {{range $firstFour}}
             <div class="pro" >
                 <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 
@@ -169,8 +170,8 @@
                 </div>
                 <a href="/add-to-cart"><i class="fal fa-shopping-cart cart"> </i></a>
             </div> -->
-
-            {{range slice . 3 8}}
+            {{$lastFour :=  slice . 4 8}}
+            {{range $lastFour}}
             <div class="pro" >
                 <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 

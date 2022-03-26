@@ -38,7 +38,7 @@ func GetSearchSuggestions(input string) []string {
 
 	productsCollection := database.GetDatabaseCollection("products")
 
-	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{"name": bson.M{"$regex": input}})
+	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{"name": bson.M{"$regex": "(?i)" + input}})
 	if err != nil {
 		log.Println("Error getting products cursor in search suggestions:", err)
 		return []string{}
@@ -66,7 +66,7 @@ func GetProductsFromSearchInput(searchInput string, pageNumber int) []models.Pro
 		Skip:  &skip,
 	}
 
-	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{"name": bson.M{"$regex": searchInput}}, findOptions)
+	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{"name": bson.M{"$regex": "(?i)" + searchInput}}, findOptions)
 	if err != nil {
 		log.Println("Error getting products cursor:", err)
 		return []models.Product{}

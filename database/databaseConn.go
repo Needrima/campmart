@@ -2,7 +2,6 @@ package database
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -13,10 +12,9 @@ import (
 
 // initialized connection to mongoDB and returns a database instance
 func initializeDB() *mongo.Database {
-	shellURI := "mongodb://localhost:27017"
+	// shellURI := "mongodb://localhost:27017"
 	atlasURI := os.Getenv("atlasURI")
-	fmt.Println("ATLAS URI:", atlasURI)
-	clientOptions := options.Client().ApplyURI(shellURI)
+	clientOptions := options.Client().ApplyURI(atlasURI)
 
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {

@@ -5,9 +5,14 @@ import (
 	"regexp"
 )
 
+var templateFuncMap = template.FuncMap{
+	"inc": incrementPageNumber,
+	"dec": decrementPageNumber,
+}
+
 // LoadTemplate loads html templates
 func LoadTemplate() *template.Template {
-	tpl := template.Must(template.ParseGlob("website-templates/*.html"))
+	tpl := template.Must(template.New("").Funcs(templateFuncMap).ParseGlob("website-templates/*.html"))
 
 	return tpl
 }

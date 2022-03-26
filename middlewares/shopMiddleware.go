@@ -6,9 +6,12 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"strings"
+
+	// "strings"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	// "go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func GetShopProducts() []models.Product {
@@ -36,28 +39,46 @@ func GetSearchSuggestions(input string) []string {
 
 	productsCollection := database.GetDatabaseCollection("products")
 
-	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{})
+	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{"name": bson.M{"$regex": input}})
 	if err != nil {
-		log.Println("Error getting products cursor:", err)
-		return []string{}
-	}
-
-	var products []models.Product
-
-	if err := productsCursor.All(context.TODO(), &products); err != nil {
+		log.Println("Error getting products cursor in search suggestions:", err)
 		return []string{}
 	}
 
 	var suggestions []string
 
-	for _, p := range products {
-		if strings.Contains(strings.ToLower(p.Name), strings.ToLower(input)) {
-			fmt.Println(p.Name)
-			suggestions = append(suggestions, p.Name)
+	for productsCursor.Next(context.TODO()) {
+		var p models.Product
+
+		if err := productsCursor.Decode(&p); err != nil {
+			fmt.Println("Error getting product:", err)
 		}
+
+		suggestions = append(suggestions, p.Name)
 	}
 
-	fmt.Println("--------------------------")
-
 	return suggestions
+}
+
+func GetProductsFromSearchInput(searchInput string, pageNumber int) []models.Product {
+	limit, skip := int64(16), int64(16*pageNumber)
+	findOptions := &options.FindOptions{
+		Limit: &limit,
+		Skip:  &skip,
+	}
+
+	productsCursor, err := productsCollection.Find(context.TODO(), bson.M{"name": bson.M{"$regex": searchInput}}, findOptions)
+	if err != nil {
+		log.Println("Error getting products cursor:", err)
+		return []models.Product{}
+	}
+
+	var products []models.Product
+
+	if err := productsCursor.All(context.TODO(), &products); err != nil {
+		log.Println("Error getting search prodcucts:", err)
+		return []models.Product{}
+	}
+
+	return products
 }

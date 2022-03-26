@@ -23,7 +23,7 @@
         </a>
 
         <form action="/search" method="post">
-            <input type="text" name="search-data" id="searchInput" placeholder="What would you like to buy today?" style="width: 300px; height: 50px; border-top-left-radius:10px; border-bottom-left-radius:10px; border: none; outline: none; padding: 0 10px; font-size: 15px;">
+            <input type="text" name="search-input" id="searchInput" placeholder="What would you like to buy today?" style="width: 300px; height: 50px; border-top-left-radius:10px; border-bottom-left-radius:10px; border: none; outline: none; padding: 0 10px; font-size: 15px;">
             <input type="submit" value="Go" style="background-color: #088187; height: 50px; width: 50px;border-top-right-radius:10px;border-bottom-right-radius:10px; border: none; color: white; cursor: pointer;">
         </form>
 
@@ -52,7 +52,7 @@
     <section id="product1" class="section-p1">
         <div class="pro-container">
 
-            {{range .}}
+            {{range .Products}}
             <div class="pro" >
                 <img src="../website-pub/images/products/{{index .Image_names 0}}" alt onclick="window.location.href='/single-product/{{.Id}}';">
 
@@ -94,8 +94,8 @@
 
     <section id="pagination" class="section-p1">
         <!-- <a href="#">1</a> -->
-        <a href="/shop/previous"><i class="fal fa-long-arrow-left"></i></a>
-        <a href="/shop/next"><i class="fal fa-long-arrow-right"></i></a>
+        <a href="/search/previous/{{dec .PageNumber}}"><i class="fal fa-long-arrow-left"></i></a>
+        <a href="/search/next/{{inc .PageNumber}}"><i class="fal fa-long-arrow-right"></i></a>
     </section>
 
     <section id="newsletter" class="section-p1 section-m1">

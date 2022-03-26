@@ -1,12 +1,14 @@
 package controllers
 
 import (
-	// "campmart/helpers"
 	"campmart/middlewares"
+	"campmart/models"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -39,8 +41,61 @@ func SearchSuggestions() httprouter.Handle {
 	}
 }
 
-func ChangePage() httprouter.Handle {
+func NextOrPreviousPage() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		http.Redirect(w, r, "/shop", http.StatusSeeOther)
+	}
+}
+
+func Search() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		searchInput := r.FormValue("search-input")
+		pageNumber := 0
+
+		searchCookie, err := r.Cookie("search")
+		if err == http.ErrNoCookie {
+			cookie := &http.Cookie{
+				Name:    "search",
+				Value:   searchInput,
+				Expires: time.Now().Add(time.Hour * 24), // expires after a day
+			}
+			http.SetCookie(w, cookie)
+
+			products := middlewares.GetProductsFromSearchInput(cookie.Value, pageNumber)
+			if len(products) == 0 {
+				http.Error(w, "no product found for search", http.StatusBadRequest)
+				return
+			}
+
+			fmt.Println("Number of products in search:", len(products))
+
+			searchPageData := models.SearchPage{
+				Products:   products,
+				PageNumber: pageNumber,
+			}
+
+			if err := tpl.ExecuteTemplate(w, "search.html", searchPageData); err != nil {
+				log.Fatal("ExexcuteTemplate error:", err)
+			}
+			return
+		}
+
+		searchCookie.Value = searchInput
+		http.SetCookie(w, searchCookie)
+
+		products := middlewares.GetProductsFromSearchInput(searchCookie.Value, pageNumber)
+		if len(products) == 0 {
+			http.Error(w, "no product found for search", http.StatusBadRequest)
+			return
+		}
+
+		searchPageData := models.SearchPage{
+			Products:   products,
+			PageNumber: pageNumber,
+		}
+
+		if err := tpl.ExecuteTemplate(w, "search.html", searchPageData); err != nil {
+			log.Fatal("ExexcuteTemplate error:", err)
+		}
 	}
 }

@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"campmart/database"
+	"campmart/helpers"
 	"campmart/models"
 	"context"
 	"fmt"
@@ -53,7 +54,9 @@ func GetSearchSuggestions(input string) []string {
 			fmt.Println("Error getting product:", err)
 		}
 
-		suggestions = append(suggestions, p.Name)
+		if !helpers.FoundString(suggestions, p.Name) {
+			suggestions = append(suggestions, p.Name)
+		}
 	}
 
 	return suggestions

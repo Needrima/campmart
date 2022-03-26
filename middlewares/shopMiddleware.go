@@ -19,7 +19,7 @@ func GetShopProducts() []models.Product {
 
 	var products []models.Product
 
-	sampleStage := bson.M{"$sample": bson.M{"size": 16}} // get 16 random products
+	sampleStage := bson.M{"$sample": bson.M{"size": 12}} // get 12 random products
 
 	productsCursor, err := productsCollection.Aggregate(context.TODO(), []bson.M{sampleStage})
 	if err != nil {
@@ -63,7 +63,7 @@ func GetSearchSuggestions(input string) []string {
 }
 
 func GetProductsFromSearchInput(searchInput string, pageNumber int) []models.Product {
-	limit, skip := int64(16), int64(16*pageNumber)
+	limit, skip := int64(12), int64(12*pageNumber)
 	findOptions := &options.FindOptions{
 		Limit: &limit,
 		Skip:  &skip,

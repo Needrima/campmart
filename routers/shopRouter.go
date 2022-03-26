@@ -12,4 +12,5 @@ func RegisterShopRoutes(r *httprouter.Router) {
 	r.GET("/shop/previous", controller.NextOrPreviousPage())
 	r.POST("/searchtry", controller.SearchSuggestions())
 	r.POST("/search", controller.Search())
+	r.GET("/search/:pageNumber", controller.NextOrPreviousSearch())
 }

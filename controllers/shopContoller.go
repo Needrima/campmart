@@ -8,13 +8,14 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-// ShopGet gets 16 random products from database and serve to shop.html
+// ShopGet gets 12 random products from database and serve to shop.html
 func ShopGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		products := middlewares.GetShopProducts()
@@ -89,6 +90,33 @@ func Search() httprouter.Handle {
 
 		searchCookie.Value = searchInput
 		http.SetCookie(w, searchCookie)
+
+		products := middlewares.GetProductsFromSearchInput(searchCookie.Value, pageNumber)
+		if len(products) == 0 {
+			http.Error(w, "no product found for search", http.StatusBadRequest)
+			return
+		}
+
+		searchPageData := models.SearchPage{
+			Products:   products,
+			PageNumber: pageNumber,
+		}
+
+		if err := tpl.ExecuteTemplate(w, "search.html", searchPageData); err != nil {
+			log.Fatal("ExexcuteTemplate error:", err)
+		}
+	}
+}
+
+func NextOrPreviousSearch() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		pageNumber, _ := strconv.Atoi(ps.ByName("pageNumber"))
+
+		searchCookie, err := r.Cookie("search")
+		if err == http.ErrNoCookie {
+			http.NotFound(w, r)
+			return
+		}
 
 		products := middlewares.GetProductsFromSearchInput(searchCookie.Value, pageNumber)
 		if len(products) == 0 {

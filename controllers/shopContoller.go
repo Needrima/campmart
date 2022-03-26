@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/julienschmidt/httprouter"
@@ -31,6 +32,11 @@ func SearchSuggestions() httprouter.Handle {
 			log.Println("Error reading request body:", err)
 		}
 
+		if len(string(bs)) < 3 {
+			json.NewEncoder(w).Encode([]string{"no results found"})
+			return
+		}
+
 		suggestions := middlewares.GetSearchSuggestions(string(bs))
 		if len(suggestions) == 0 {
 			json.NewEncoder(w).Encode([]string{"no results found"})
@@ -49,7 +55,8 @@ func NextOrPreviousPage() httprouter.Handle {
 
 func Search() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		searchInput := r.FormValue("search-input")
+		searchInput := strings.TrimSpace(r.FormValue("searchInput"))
+		fmt.Printf("Search input: %v, length: %v", searchInput, len(searchInput))
 		pageNumber := 0
 
 		searchCookie, err := r.Cookie("search")

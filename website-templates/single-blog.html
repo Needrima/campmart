@@ -44,29 +44,26 @@
     </section>  
     
     <section id="page-header" class="blog-header">
-        <h2>How To Place An Order</h2>
-        <p style="font-weight: 900;">15/2/2022</p>
+        <h2>{{.Title}}</h2>
+        <p>{{.CreatedAt}}</p>
     </section>
 
     <section class="section-m1" id="blog-body">
         <div id="blog-content">        
-            <img src="../website-pub/images/blog/blog-img1.png" alt="">
+            <img src="../website-pub/images/blog/{{.ImageName}}" alt="">
 
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi qui doloremque, eaque aliquam obcaecati pariatur et ullam illum! Est, earum vero beatae sint ut quo fugiat a dicta doloremque aperiam.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident optio non temporibus, aperiam itaque fugit unde autem sed suscipit hic, beatae voluptatibus officiis. Sapiente delectus voluptate, nesciunt ipsum unde blanditiis!
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, illum fuga. Voluptate, quae nam veritatis quasi neque placeat soluta nihil numquam praesentium? Aut optio in illum, quis minima sint voluptatem!
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde ea exercitationem impedit animi dolor libero repudiandae quod maxime mollitia, sapiente voluptatem provident molestias eaque, quibusdam harum asperiores. Illum, officia dicta?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quas, aperiam nihil architecto ipsum quod praesentium labore, quia, voluptatibus sunt sapiente pariatur voluptatum id! Vel illum rerum tenetur nobis doloribus?
+                {{.Content}}
             </p>
 
             <div id="comment-section">
                 <h4>Leave a comment</h4>
-                <form action="#">
+                <form method="post">
                     <input type="text" placeholder="Your Name *">
                     <textarea placeholder="Your comment *" id="" cols="30" rows="10"></textarea>
                     <button type="submit" class="normal">Comment</button>
                 </form>
+                {{range .Comments}}
                 <div class="comment">
                     <p>
                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -74,31 +71,15 @@
                        <span>by Commenter</span>
                     </p>
                 </div>
+                {{end}}
 
-                <div class="comment">
+                <!-- <div class="comment">
                     <p>
                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
                        Quidem, autem excepturi quibusdam enim asperiores eligendi sapiente. Odit eaque deb
                        <span>by Commenter</span>
                     </p>
-                </div>
-
-                <div class="comment">
-                    <p>
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                       Quidem, autem excepturi quibusdam enim asperiores eligendi sapiente. Odit eaque deb
-                       <span>by Commenter</span>
-                    </p>
-                </div>
-
-                <div class="comment">
-                    <p>
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                       Quidem, autem excepturi quibusdam enim asperiores eligendi sapiente. Odit eaque deb
-                       <span>by Commenter</span>
-                    </p>
-                </div>
-            </div>
+                </div> -->
         </div>
 
         <div id="side-content">

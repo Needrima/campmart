@@ -26,3 +26,8 @@ type BlogPage struct {
 	BlogPosts  []BlogPost
 	PageNumber int
 }
+
+type SingleBlogPage struct {
+	BlogPost
+	Suggestions []BlogPost
+}

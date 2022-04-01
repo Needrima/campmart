@@ -40,3 +40,39 @@ func GetBlogposts(pageNumber int) []models.BlogPost {
 
 	return blogPosts
 }
+
+func GetSinglePostAndSugestions(id string) models.SingleBlogPage {
+	blogPostsCollection := database.GetDatabaseCollection("blogposts")
+
+	var blogPost models.BlogPost
+	if err := blogPostsCollection.FindOne(context.TODO(), bson.M{"id": id}).Decode(&blogPost); err != nil {
+		log.Println("Error getting specified blogpost:", err)
+		return models.SingleBlogPage{}
+	}
+
+	sampleStage := bson.M{"$sample": bson.M{"size": 3}}
+	suggestionsCursor, err := blogPostsCollection.Aggregate(context.TODO(), []bson.M{sampleStage})
+	if err != nil {
+		log.Println("error getting suggestions cursor:", err)
+		return models.SingleBlogPage{}
+	}
+
+	var suggestions []models.BlogPost
+	for suggestionsCursor.Next(context.TODO()) {
+		var b models.BlogPost
+
+		if err := suggestionsCursor.Decode(&b); err != nil {
+			log.Println("Suggestions cursor ranging error:", err)
+			continue
+		}
+
+		suggestions = append(suggestions, b)
+	}
+
+	singleBlogPage := models.SingleBlogPage{
+		BlogPost:    blogPost,
+		Suggestions: suggestions,
+	}
+
+	return singleBlogPage
+}

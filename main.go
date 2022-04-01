@@ -23,7 +23,6 @@ func main() {
 	router.RegisterAboutRoutes(r)
 	router.RegisterCartRoutes(r)
 	router.RegisterSingleProductRoutes(r)
-	router.RegisterSingleBlogRoutes(r)
 	router.RegisterCheckoutRoutes(r)
 
 	fmt.Println("Serving on port 8008. Visit localhost:8008 ....")

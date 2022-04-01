@@ -8,4 +8,5 @@ import (
 
 func RegisterBlogRoutes(r *httprouter.Router) {
 	r.GET("/blog", controller.BlogGet())
+	r.GET("/single-blog/:id", controller.SingleBlogGet())
 }

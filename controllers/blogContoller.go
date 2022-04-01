@@ -17,12 +17,29 @@ func BlogGet() httprouter.Handle {
 		pageNumber := 0
 		blogPosts := middlewares.GetBlogposts(pageNumber)
 
+		if len(blogPosts) == 0 {
+			http.Error(w, "somethin went wrong", http.StatusInternalServerError)
+			return
+		}
+
 		blogPage := models.BlogPage{
 			BlogPosts:  blogPosts,
 			PageNumber: pageNumber,
 		}
 
 		if err := tpl.ExecuteTemplate(w, "blog.html", blogPage); err != nil {
+			log.Fatal("ExexcuteTemplate error:", err)
+		}
+	}
+}
+
+// SingleBlogGet serves a single blog to single-blog.html
+func SingleBlogGet() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		id := ps.ByName("id")
+		blogPostAndOtherPost := middlewares.GetSinglePostAndSugestions(id)
+
+		if err := tpl.ExecuteTemplate(w, "single-blog.html", blogPostAndOtherPost); err != nil {
 			log.Fatal("ExexcuteTemplate error:", err)
 		}
 	}

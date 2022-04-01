@@ -83,12 +83,14 @@
         </div>
 
         <div id="side-content">
+            {{range .Suggestions}}
             <div>
-                <img src="../website-pub/images/blog/blog-img1.png" alt="">
-                <h4><a href="/single-blog">New Product In: Past Questions For Year 2 and Jupeb</a></h4>
+                <img src="../website-pub/images/blog/{{.ImageName}}" alt="">
+                <h4><a href="/single-blog/{{.Id}}">New Product In: Past Questions For Year 2 and Jupeb</a></h4>
             </div>
+            {{end}}
 
-            <div>
+            <!-- <div>
                 <img src="../website-pub/images/blog/blog-img2.png" alt="">
                 <h4><a href="/single-blog">New Products avalable</a></h4>
             </div>
@@ -96,7 +98,7 @@
             <div>
                 <img src="../website-pub/images/blog/blog-img3.png" alt="">
                 <h4><a href="/single-blog">How to Place Ads With Us</a></h4>
-            </div>
+            </div> -->
         </div>
     </section>
 

@@ -26,6 +26,7 @@ func GetShopProducts() []models.Product {
 		log.Printf("error getting sample cursor: %v", err)
 		return []models.Product{}
 	}
+	defer productsCursor.Close(context.TODO())
 
 	if err := productsCursor.All(context.TODO(), &products); err != nil {
 		log.Println("Error writing cursor content to product:", err)
@@ -44,6 +45,7 @@ func GetSearchSuggestions(input string) []string {
 		log.Println("Error getting products cursor in search suggestions:", err)
 		return []string{}
 	}
+	defer productsCursor.Close(context.TODO())
 
 	var suggestions []string
 
@@ -74,6 +76,7 @@ func GetProductsFromSearchInput(searchInput string, pageNumber int) []models.Pro
 		log.Println("Error getting products cursor:", err)
 		return []models.Product{}
 	}
+	defer productsCursor.Close(context.TODO())
 
 	var products []models.Product
 

@@ -22,6 +22,7 @@ func GetHomeProducts() []models.Product {
 		log.Printf("error getting sample cursor: %v", err)
 		return []models.Product{}
 	}
+	defer productsCursor.Close(context.TODO())
 
 	if err := productsCursor.All(context.TODO(), &products); err != nil {
 		log.Println("Error writing cursor content to product:", err)

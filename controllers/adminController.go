@@ -53,3 +53,43 @@ func AddNewProduct() httprouter.Handle {
 		}
 	}
 }
+
+// NewProductGet serves the new-product.html page to browser to add new product for sale
+func NewBlogpostGet() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		if err := tpl.ExecuteTemplate(w, "new-blog.html", nil); err != nil {
+			log.Fatal("Exexcute Template error:", err)
+		}
+	}
+}
+
+// AddNewProduct creates a new product from form submitted by admin and stores in database
+func AddNewBlogpost() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		blogPost, err := middlewares.CreateNewBlog(r)
+
+		//check if string non numeric values is submited for numeric value form field
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		fmt.Println("Blogpost:", blogPost)
+
+		collection := database.GetDatabaseCollection("blogposts")
+
+		insertOneResult, err := collection.InsertOne(context.TODO(), blogPost)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		fmt.Printf("Inserted product id: %v", insertOneResult.InsertedID)
+
+		successMsg := fmt.Sprintf("Successfully added blog post with id %v", insertOneResult.InsertedID)
+
+		if err := tpl.ExecuteTemplate(w, "new-blog.html", successMsg); err != nil {
+			log.Fatal("Exexcute Template error:", err)
+		}
+	}
+}

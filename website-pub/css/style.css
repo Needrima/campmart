@@ -695,6 +695,10 @@ footer .copyright {
     background-image: url("../images/static/blog-header.png");
 }
 
+#page-header.blog-header h2, #page-header.blog-header p {
+    color: black;
+}
+
 #blog {
     padding: 150px 150px 0 150px;
 }
@@ -753,8 +757,8 @@ footer .copyright {
     position: absolute;
     top: -40px;
     left: 0;
-    font-size: 70px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 500;
     color: #c9cbce;
     z-index: -20; 
 }

@@ -1,8 +1,6 @@
 package models
 
 import (
-	"mime/multipart"
-
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -20,10 +18,4 @@ type Product struct {
 	Brand       string             `bson:"brand, omitempty"`
 	Date_added  string             `bson:"date_added"`
 	Seller      `bson:"seller"`
-}
-
-type ProductImage struct {
-	File      multipart.File
-	Name      string
-	Extension string
 }

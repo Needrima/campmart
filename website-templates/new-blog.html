@@ -44,11 +44,12 @@
     </section>  
 
     <section class="section-p1" id="checkout">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <h3>NEW BLOG POST</h3>
             <input name="blog_title" type="text" placeholder="Title *">
             <textarea name="blog_content" id="" cols="30" rows="10" placeholder="Content"></textarea>
             <input type="file" name="blog_img" value="Add an image">
+            <input type="password" name="adminPassword" id="" placeholder="Admin Password">
             <button class="normal" type="submit">Post</button>
         </form>
     </section>
@@ -227,5 +228,10 @@
         })
     </script>
     <!---->
+    {{if .}}
+    <script>        
+        alert({{.}})    
+    </script>
+    {{end}}
 </body>
 </html>

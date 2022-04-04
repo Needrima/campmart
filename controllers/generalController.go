@@ -32,7 +32,7 @@ func SubscribeToNewsLetter() httprouter.Handle {
 		subscribersCollection := database.GetDatabaseCollection("subscribers")
 
 		if err := middlewares.SendMail(subscriber.Email, "welcomeEmail.html", "Welcome to Campmart", nil); err != nil {
-			fmt.Println(err)
+			fmt.Println("Error sending mail on neww user subscription:", err)
 		}
 
 		insertOneResult, err := subscribersCollection.InsertOne(context.TODO(), subscriber)

@@ -126,3 +126,7 @@ func CreateNewBlog(r *http.Request) (models.BlogPost, error) {
 
 	return newBlog, err
 }
+
+// func GetAllSubscribersEmail() ([]string, error) {
+
+// }

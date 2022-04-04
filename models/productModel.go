@@ -19,3 +19,8 @@ type Product struct {
 	Date_added  string             `bson:"date_added"`
 	Seller      `bson:"seller"`
 }
+
+type ProductAndSuggestions struct {
+	Product
+	Suggestions []Product
+}

@@ -5,6 +5,7 @@ import (
 
 	"campmart/middlewares"
 	"campmart/models"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -42,5 +43,20 @@ func SingleBlogGet() httprouter.Handle {
 		if err := tpl.ExecuteTemplate(w, "single-blog.html", blogPostAndOtherPost); err != nil {
 			log.Fatal("ExexcuteTemplate error:", err)
 		}
+	}
+}
+
+func AddNewComment() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		id := ps.ByName("id")
+
+		newCommentId, err := middlewares.AddNewCommentToPost(r, id)
+		if err != nil {
+			http.Error(w, "something went wrong", http.StatusInternalServerError)
+			return
+		}
+
+		fmt.Println("New comment ID:", newCommentId)
+		http.Redirect(w, r, "/single-blog/"+id, http.StatusSeeOther)
 	}
 }

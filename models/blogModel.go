@@ -22,6 +22,11 @@ type BlogPost struct {
 	Comments   []Comment          `bson:"comments, omitempty"`
 }
 
+// AddComment adds a new comment to a blogpost
+func (b *BlogPost) AddComment(c Comment) {
+	b.Comments = append(b.Comments, c)
+}
+
 type BlogPage struct {
 	BlogPosts  []BlogPost
 	PageNumber int

@@ -53,52 +53,40 @@
             <img src="../website-pub/images/blog/{{.ImageName}}" alt="">
 
             <p>
-                {{.Content}}
+               {{.Content}}
             </p>
 
             <div id="comment-section">
                 <h4>Leave a comment</h4>
-                <form method="post">
-                    <input type="text" placeholder="Your Name *">
-                    <textarea placeholder="Your comment *" id="" cols="30" rows="10"></textarea>
+                <form method="post" action="/comment/{{.Id}}">
+                    <input type="text" placeholder="Your Name *" name="commentor">
+                    <textarea placeholder="Your comment *" cols="30" rows="10" name="comment"></textarea>
                     <button type="submit" class="normal">Comment</button>
                 </form>
-                {{range .Comments}}
+                
                 <div class="comment">
+                    {{range .Comments}}
                     <p>
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                       Quidem, autem excepturi quibusdam enim asperiores eligendi sapiente. Odit eaque deb
-                       <span>by Commenter</span>
+                      {{.Comment}}.
+                       <span>by {{.Commentor}}</span>
                     </p>
-                </div>
-                {{end}}
-
-                <!-- <div class="comment">
-                    <p>
-                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                       Quidem, autem excepturi quibusdam enim asperiores eligendi sapiente. Odit eaque deb
-                       <span>by Commenter</span>
-                    </p>
-                </div> -->
+                    {{end}}
+                </div> 
+            </div>               
         </div>
 
         <div id="side-content">
             {{range .Suggestions}}
             <div>
                 <img src="../website-pub/images/blog/{{.ImageName}}" alt="">
-                <h4><a href="/single-blog/{{.Id}}">New Product In: Past Questions For Year 2 and Jupeb</a></h4>
+                <h4><a href="/single-blog/{{.Id}}">{{.Title}}</a></h4>
             </div>
             {{end}}
 
-            <!-- <div>
-                <img src="../website-pub/images/blog/blog-img2.png" alt="">
-                <h4><a href="/single-blog">New Products avalable</a></h4>
-            </div>
-
-            <div>
-                <img src="../website-pub/images/blog/blog-img3.png" alt="">
+            <!--div>
+                <img src="../website-pub/images/blog/624775305ab5b82e4fd26511338445166.png" alt="">
                 <h4><a href="/single-blog">How to Place Ads With Us</a></h4>
-            </div> -->
+            </div-->
         </div>
     </section>
 

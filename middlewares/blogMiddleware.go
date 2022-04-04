@@ -5,8 +5,11 @@ import (
 	"campmart/models"
 	"context"
 	"log"
+	"net/http"
+	"strings"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -75,4 +78,35 @@ func GetSinglePostAndSugestions(id string) models.SingleBlogPage {
 	}
 
 	return singleBlogPage
+}
+
+// AddNewCommentToPost add a new comment to the with the Id field matching id
+// It return the Id Hex of the inserted comment and a nil error if no err occured
+// and an empty string if an error occured
+func AddNewCommentToPost(r *http.Request, id string) (string, error) {
+	commentor := strings.TrimSpace(r.FormValue("commentor"))
+	comment := strings.TrimSpace(r.FormValue("comment"))
+
+	var postToCommentTo models.BlogPost
+	blogPostsCollection := database.GetDatabaseCollection("blogposts")
+	if err := blogPostsCollection.FindOne(context.TODO(), bson.M{"id": id}).Decode(&postToCommentTo); err != nil {
+		log.Println("Error geting post to comment to:", err)
+		return "", err
+	}
+
+	newComment := models.Comment{
+		DatabaseID: primitive.NewObjectID(),
+		Commentor:  commentor,
+		Comment:    comment,
+	}
+
+	postToCommentTo.AddComment(newComment)
+
+	_, err := blogPostsCollection.UpdateOne(context.TODO(), bson.M{"id": id}, bson.M{"$set": postToCommentTo})
+	if err != nil {
+		log.Println("Error updating result:", err)
+		return "", err
+	}
+
+	return newComment.DatabaseID.Hex(), nil
 }

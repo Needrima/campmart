@@ -88,6 +88,13 @@ func AddNewBlogpost() httprouter.Handle {
 
 		successMsg := fmt.Sprintf("Successfully added blog post with id %v", insertOneResult.InsertedID)
 
+		emails, _ := middlewares.GetAllSubscribersEmail()
+		for _, email := range emails {
+			if err := middlewares.SendMail(email, "newBlogEmail.html", "New Blog Post On Campmart", blogPost); err != nil {
+				log.Printf("Could not send mail to email {%v}\n", email)
+			}
+		}
+
 		if err := tpl.ExecuteTemplate(w, "new-blog.html", successMsg); err != nil {
 			log.Fatal("Exexcute Template error:", err)
 		}

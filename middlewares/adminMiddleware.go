@@ -1,8 +1,10 @@
 package middlewares
 
 import (
+	"campmart/database"
 	"campmart/helpers"
 	"campmart/models"
+	"context"
 	"errors"
 	"fmt"
 	"log"
@@ -13,6 +15,7 @@ import (
 	"strings"
 	"time"
 
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -127,6 +130,26 @@ func CreateNewBlog(r *http.Request) (models.BlogPost, error) {
 	return newBlog, err
 }
 
-// func GetAllSubscribersEmail() ([]string, error) {
+func GetAllSubscribersEmail() ([]string, error) {
+	subscribersCollection := database.GetDatabaseCollection("subscribers")
 
-// }
+	subscribersCursor, err := subscribersCollection.Find(context.TODO(), bson.M{})
+	if err != nil {
+		log.Println("Error getting subscribers cursor:", err)
+		return []string{}, err
+	}
+	defer subscribersCursor.Close(context.TODO())
+
+	var emails []string
+	for subscribersCursor.Next(context.TODO()) {
+		var s models.Subscriber
+
+		if err := subscribersCursor.Decode(&s); err != nil {
+			log.Println("Error decoding subscriber:", err)
+			continue
+		}
+		emails = append(emails, s.Email)
+	}
+
+	return emails, nil
+}

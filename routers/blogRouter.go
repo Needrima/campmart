@@ -8,6 +8,7 @@ import (
 
 func RegisterBlogRoutes(r *httprouter.Router) {
 	r.GET("/blog", controller.BlogGet())
+	r.GET("/blog/:pageNumber", controller.NextOrPreviousBlogPage())
 	r.GET("/single-blog/:id", controller.SingleBlogGet())
 	r.POST("/comment/:id", controller.AddNewComment())
 }

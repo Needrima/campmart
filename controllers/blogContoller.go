@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -20,6 +21,32 @@ func BlogGet() httprouter.Handle {
 
 		if len(blogPosts) == 0 {
 			http.Error(w, "somethin went wrong", http.StatusInternalServerError)
+			return
+		}
+
+		blogPage := models.BlogPage{
+			BlogPosts:  blogPosts,
+			PageNumber: pageNumber,
+		}
+
+		if err := tpl.ExecuteTemplate(w, "blog.html", blogPage); err != nil {
+			log.Fatal("ExexcuteTemplate error:", err)
+		}
+	}
+}
+
+func NextOrPreviousBlogPage() httprouter.Handle {
+	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		pageNumber, _ := strconv.Atoi(ps.ByName("pageNumber"))
+		if pageNumber < 0 {
+			http.Redirect(w, r, "/blog", http.StatusSeeOther)
+			return
+		}
+
+		blogPosts := middlewares.GetBlogposts(pageNumber)
+
+		if len(blogPosts) == 0 {
+			http.Redirect(w, r, "/blog", http.StatusSeeOther)
 			return
 		}
 

@@ -38,7 +38,7 @@ func BlogGet() httprouter.Handle {
 func NextOrPreviousBlogPage() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		pageNumber, _ := strconv.Atoi(ps.ByName("pageNumber"))
-		if pageNumber < 0 {
+		if pageNumber <= 0 {
 			http.Redirect(w, r, "/blog", http.StatusSeeOther)
 			return
 		}

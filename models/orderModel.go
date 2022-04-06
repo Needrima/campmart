@@ -24,3 +24,14 @@ type Order struct {
 	ShippingFee     int                 `bson:"shipping_fee, omitempty"`
 	OrderTotal      int                 `bson:"order_total"`
 }
+
+func (o *Order) SetOrderTotal() {
+	var cartTotal int
+	for _, item := range o.CartItems {
+		cartTotal += item.Price * item.Quantity
+	}
+
+	orderTotal := cartTotal + o.ShippingFee
+
+	o.OrderTotal = orderTotal
+}

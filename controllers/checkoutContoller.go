@@ -59,7 +59,7 @@ func PlaceNewOrder() httprouter.Handle {
 			return
 		}
 
-		newOrder.OrderTotal = middlewares.CalculateOrderTotal(newOrder)
+		newOrder.SetOrderTotal()
 		fmt.Println("New order:", newOrder)
 
 		cartCookie.MaxAge = -1

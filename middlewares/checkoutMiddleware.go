@@ -58,15 +58,3 @@ func CreateNewOrder(r *http.Request, usersCartDB map[string]models.CartItem) (mo
 
 	return newOrder, nil
 }
-
-// CacluateOrderTotal return the total amount for a new order
-func CalculateOrderTotal(order models.Order) int {
-	var cartTotal int
-	for _, item := range order.CartItems {
-		cartTotal += item.Price * item.Quantity
-	}
-
-	orderTotal := cartTotal + order.ShippingFee
-
-	return orderTotal
-}

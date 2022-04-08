@@ -98,7 +98,7 @@ func AddNewBlogpost() httprouter.Handle {
 			go func(em string) {
 				mu.Lock()
 				if err := middlewares.SendMail(em, "newBlogEmail.html", "New Blog Post On Campmart", blogPost); err != nil {
-					log.Printf("Could not send mail to email {%v}\n", em)					
+					log.Printf("Could not send mail to email {%v}\n", em)
 				}
 				mu.Unlock()
 				wg.Done()

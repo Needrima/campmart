@@ -13,6 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// GetBlogposts gets 3 blogpost based on the pagenumber
 func GetBlogposts(pageNumber int) []models.BlogPost {
 	blogPostsCollection := database.GetDatabaseCollection("blogposts")
 	limit, skip, sort := int64(3), int64(pageNumber*3), bson.M{"created_at": -1}
@@ -44,6 +45,8 @@ func GetBlogposts(pageNumber int) []models.BlogPost {
 	return blogPosts
 }
 
+// GetSinglePostAndSugestions gets a single blog posts by the provided id.
+// It also returns three random blog posts as suggestions for other posts
 func GetSinglePostAndSugestions(id string) models.SingleBlogPage {
 	blogPostsCollection := database.GetDatabaseCollection("blogposts")
 
@@ -80,9 +83,9 @@ func GetSinglePostAndSugestions(id string) models.SingleBlogPage {
 	return singleBlogPage
 }
 
-// AddNewCommentToPost add a new comment to the with the Id field matching id
+// AddNewCommentToPost add a new comment to the blog post with the Id field matching id
 // It return the Id Hex of the inserted comment and a nil error if no err occured
-// and an empty string if an error occured
+// or an empty string if an error occured
 func AddNewCommentToPost(r *http.Request, id string) (string, error) {
 	commentor := strings.TrimSpace(r.FormValue("commentor"))
 	comment := strings.TrimSpace(r.FormValue("comment"))

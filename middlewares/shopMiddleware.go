@@ -14,6 +14,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+// GetShopProducts gets 12 random products for shop
 func GetShopProducts() []models.Product {
 	productsCollection := database.GetDatabaseCollection("products")
 
@@ -36,6 +37,7 @@ func GetShopProducts() []models.Product {
 	return products
 }
 
+// GetSearchSuggestions gets sugestion for search page
 func GetSearchSuggestions(input string) []string {
 
 	productsCollection := database.GetDatabaseCollection("products")
@@ -64,6 +66,7 @@ func GetSearchSuggestions(input string) []string {
 	return suggestions
 }
 
+// GetProductsFromSearchInput gets products in database with name matching any character in searchinput
 func GetProductsFromSearchInput(searchInput string, pageNumber int) []models.Product {
 	limit, skip := int64(12), int64(12*pageNumber)
 	findOptions := &options.FindOptions{

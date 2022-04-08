@@ -13,7 +13,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-//BlogGet gets all blog first 3 latest blog posts serves blog.html to browser
+//BlogGet gets the newest 3 blog posts in database sorted by time added serves to browser
 func BlogGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		pageNumber := 0
@@ -35,6 +35,9 @@ func BlogGet() httprouter.Handle {
 	}
 }
 
+// NextOrPreviousBlogPage get the next 3 blog posts or previous three blog post from the database.
+// The action to execute i.e next or previou is determined by the page number.
+// See type BlogPage in package models
 func NextOrPreviousBlogPage() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		pageNumber, _ := strconv.Atoi(ps.ByName("pageNumber"))
@@ -73,6 +76,7 @@ func SingleBlogGet() httprouter.Handle {
 	}
 }
 
+// AddNewComment adds a new comment to a blog post
 func AddNewComment() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		id := ps.ByName("id")

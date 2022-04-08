@@ -21,7 +21,7 @@ func NewProductGet() httprouter.Handle {
 	}
 }
 
-// AddNewProduct creates a new product from form submitted by admin and stores in database
+// AddNewProduct add a new product to the database
 func AddNewProduct() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		product, err := middlewares.CreateNewProduct(r)
@@ -55,7 +55,7 @@ func AddNewProduct() httprouter.Handle {
 	}
 }
 
-// NewProductGet serves the new-product.html page to browser to add new product for sale
+// NewProductGet serves the new-blog.html page to browser
 func NewBlogpostGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		if err := tpl.ExecuteTemplate(w, "new-blog.html", nil); err != nil {
@@ -64,7 +64,7 @@ func NewBlogpostGet() httprouter.Handle {
 	}
 }
 
-// AddNewProduct creates a new product from form submitted by admin and stores in database
+// AddNewProduct adds a new blog post to the database and send a notification mail to all subscribers
 func AddNewBlogpost() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		blogPost, err := middlewares.CreateNewBlog(r)

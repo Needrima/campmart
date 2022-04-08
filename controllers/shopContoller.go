@@ -54,6 +54,8 @@ func NextOrPreviousPage() httprouter.Handle {
 	}
 }
 
+// Search searches for products matching the users search input
+// a search input is stored in a cookie and updated on every new entry
 func Search() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		searchInput := strings.TrimSpace(r.FormValue("searchInput"))
@@ -108,6 +110,7 @@ func Search() httprouter.Handle {
 	}
 }
 
+// NextOrPreviousSearch gets the next products in a search query determined by the page number
 func NextOrPreviousSearch() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		pageNumber, _ := strconv.Atoi(ps.ByName("pageNumber"))

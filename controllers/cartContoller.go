@@ -61,6 +61,7 @@ func AddItemToCart() httprouter.Handle {
 		switch r.URL.Path {
 		// adding to cart through cart icon
 		// qty = 1, selected type will be first type in product types
+		// r.Body is the id of the item to be added to cart
 		case "/add-to-cart":
 			bs, err := ioutil.ReadAll(r.Body)
 			if err != nil {
@@ -77,6 +78,7 @@ func AddItemToCart() httprouter.Handle {
 
 		// adding to cart through single-product.html page
 		// qty and selected type will be specified by user
+		// r.Body is a the the id, qty and type of the item to be added to cart respectively seperated ny a whitespace
 		case "/single-to-cart":
 			bs, err := ioutil.ReadAll(r.Body)
 			if err != nil {
@@ -188,11 +190,11 @@ func RemoveItemFromCart() httprouter.Handle {
 	}
 }
 
-// UpdateCartItems update quantity and type of items in the cart and before a user checksout the product
+// UpdateCartItems update quantity and type of items in the cart before a user checkout the product
 func UpdateCartItems() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		cartCookie, err := r.Cookie("cart")
-		if err == http.ErrNoCookie {
+		if err == http.ErrNoCookie { // no cookie means no iten in cart
 			http.Redirect(w, r, "/home", http.StatusSeeOther)
 			return
 		}
@@ -206,6 +208,8 @@ func UpdateCartItems() httprouter.Handle {
 
 		// fmt.Println("Database before update:", usersDB)
 
+		// for every item in cart database
+		// check for any change in quantity or type and update if any
 		for id := range database.TemporaryCartDB[cartCookie.Value] {
 			formerQty, formerType := usersDB[id].Quantity, usersDB[id].SelectedType
 			updatedQty, updatedType := r.FormValue(id+"-qty"), r.FormValue(id+"-type")

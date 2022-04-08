@@ -1,13 +1,14 @@
 package controllers
 
 import (
+	"campmart/helpers"
 	"log"
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
 )
 
-// var tpl = helpers.LoadTemplate()
+var tpl = helpers.LoadTemplate()
 
 // AboutGet serves the about.html page to browser
 func AboutGet() httprouter.Handle {

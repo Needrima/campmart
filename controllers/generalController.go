@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"campmart/database"
-	"campmart/helpers"
 	"campmart/middlewares"
 	"context"
 	"fmt"
@@ -11,8 +10,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-var tpl = helpers.LoadTemplate()
-
 // RedirectToHome redirects "/" to "/home"
 func RedirectToHome() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
@@ -20,7 +17,7 @@ func RedirectToHome() httprouter.Handle {
 	}
 }
 
-// SubscribeToNewsLetter registers a new subscriber and sends an email to subscriber on successful registration
+// SubscribeToNewsLetter adds a new subscriber to database and sends an email to subscriber on successful registration
 func SubscribeToNewsLetter() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		subscriber, err := middlewares.CreateNewSubscriber(r)

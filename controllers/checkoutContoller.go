@@ -15,7 +15,7 @@ import (
 func CheckoutGet() httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		cartCookie, err := r.Cookie("cart")
-		if err == http.ErrNoCookie { // user has not added any item to cart
+		if err == http.ErrNoCookie { // user has not added any item in cart
 			http.Redirect(w, r, "/shop", http.StatusSeeOther)
 			return
 		}

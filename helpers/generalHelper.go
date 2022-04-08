@@ -5,11 +5,13 @@ import (
 	"regexp"
 )
 
+// increment page number for blogs and search pages
 func incrementPageNumber(num int) int {
 	num++
 	return num
 }
 
+// decrement page number for blogs and search pages
 func decrementPageNumber(num int) int {
 	if num == 0 {
 		return num
@@ -19,6 +21,7 @@ func decrementPageNumber(num int) int {
 	return num
 }
 
+// reduces the content of a blog post to the first 203 characters including whitespaces
 func cutContent(content string) string {
 	return content[:203]
 }
@@ -47,6 +50,7 @@ func FoundString(items []string, item string) bool {
 	return false
 }
 
+// validate an input based on the expression
 func ValidFormInput(input, exp string) bool {
 	return regexp.MustCompile(exp).MatchString(input)
 }

@@ -92,12 +92,15 @@ func AddNewBlogpost() httprouter.Handle {
 		emails, _ := middlewares.GetAllSubscribersEmail()
 
 		var wg sync.WaitGroup
+		var mu sync.Mutex
 		for _, email := range emails {
 			wg.Add(1)
 			go func(em string) {
+				mu.Lock()
 				if err := middlewares.SendMail(em, "newBlogEmail.html", "New Blog Post On Campmart", blogPost); err != nil {
-					log.Printf("Could not send mail to email {%v}\n", em)
+					log.Printf("Could not send mail to email {%v}\n", em)					
 				}
+				mu.Unlock()
 				wg.Done()
 			}(email)
 		}

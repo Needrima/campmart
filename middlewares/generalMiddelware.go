@@ -70,7 +70,8 @@ func CreateNewSubscriber(r *http.Request) (models.Subscriber, error) {
 	return newSubcriber, nil
 }
 
-// SendWelcomeMessage sends message to new subscriber on successful subscription
+// SendMail sends a new mail to the email specified with the templateName being the name of the html template
+// that serves as the body of the mail with data being parsed into the template
 func SendMail(email, templateName, subject string, data interface{}) error {
 	mail := gomail.NewMessage()
 

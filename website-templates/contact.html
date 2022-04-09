@@ -82,13 +82,13 @@
     </section>
 
     <section id="form-details">
-        <form action="">
+        <form action="/contact" method="post">
             <span>LEAVE A MESSAGE</span>
             <h2>Drop your suggestions and opinions as we would love to hear from you</h2>
-            <input type="text" id="senderName" placeholder="Your Name *">
-            <input type="text" id="senderEmail" placeholder="Your E-mail *">
-            <input type="text" id="msgSubject" placeholder="Subject *">
-            <textarea name="" id="msg" cols="30" rows="10" placeholder="Your Message *"></textarea>
+            <input type="text" name="senderName" placeholder="Your Name *">
+            <input type="text" name="senderEmail" placeholder="Your E-mail *">
+            <input type="text" name="msgSubject" placeholder="Subject *">
+            <textarea name="msg" cols="30" rows="10" placeholder="Your Message *"></textarea>
             <button class="normal" type="submit">Send Message</button>
         </form>
 
@@ -311,5 +311,10 @@
         })
     </script>
     <!---->
+    {{if .}}
+    <script>
+        alert({{.}})
+    </script>
+    {{end}}
 </body>
 </html>

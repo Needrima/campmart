@@ -8,4 +8,5 @@ import (
 
 func RegisterContactRoutes(r *httprouter.Router) {
 	r.GET("/contact", controller.ContactGet())
+	r.POST("/contact", controller.SendUserMsg())
 }

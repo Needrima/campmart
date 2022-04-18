@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"sync"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -90,22 +89,20 @@ func AddNewBlogpost() httprouter.Handle {
 		successMsg := fmt.Sprintf("Successfully added blog post with id %v", insertOneResult.InsertedID)
 
 		emails, _ := middlewares.GetAllSubscribersEmail()
-
-		var wg sync.WaitGroup
-		var mu sync.Mutex
+		ch := make(chan string)
 		for _, email := range emails {
-			wg.Add(1)
-			go func(em string) {
-				mu.Lock()
+			go func(em string, ch chan string) {
+				// mu.Lock()
 				if err := middlewares.SendMail(em, "newBlogEmail.html", "New Blog Post On Campmart", blogPost); err != nil {
 					log.Printf("Could not send mail to email {%v}\n", em)
 				}
-				mu.Unlock()
-				wg.Done()
-			}(email)
+				ch <- "mail sent to " + em
+			}(email, ch)
 		}
 
-		wg.Wait()
+		for i := 0; i < len(emails); i++ {
+			fmt.Println(<-ch)
+		}
 
 		if err := tpl.ExecuteTemplate(w, "new-blog.html", successMsg); err != nil {
 			log.Fatal("Exexcute Template error:", err)

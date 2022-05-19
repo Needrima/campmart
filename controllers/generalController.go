@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"campmart/database"
+	"campmart/helpers"
 	"campmart/middlewares"
 	"context"
 	"fmt"
@@ -9,6 +10,8 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 )
+
+var tpl = helpers.LoadTemplate()
 
 // RedirectToHome redirects "/" to "/home"
 func RedirectToHome() httprouter.Handle {

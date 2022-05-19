@@ -15,7 +15,7 @@ func GetHomeProducts() []models.Product {
 
 	var products []models.Product
 
-	sampleStage := bson.M{"$sample": bson.M{"size": 4}} // get 8 random products
+	sampleStage := bson.M{"$sample": bson.M{"size": 4}} // get 4 random products
 
 	productsCursor, err := collection.Aggregate(context.TODO(), []bson.M{sampleStage})
 	if err != nil {

@@ -33,10 +33,10 @@ func SearchSuggestions() httprouter.Handle {
 			log.Println("Error reading request body:", err)
 		}
 
-		if len(string(bs)) < 3 {
-			json.NewEncoder(w).Encode([]string{"no results found"})
-			return
-		}
+		// if len(string(bs)) < 3 {
+		// 	json.NewEncoder(w).Encode([]string{"no results found"})
+		// 	return
+		// }
 
 		suggestions := middlewares.GetSearchSuggestions(string(bs))
 		if len(suggestions) == 0 {

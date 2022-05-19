@@ -20,7 +20,7 @@ func BlogGet() httprouter.Handle {
 		blogPosts := middlewares.GetBlogposts(pageNumber)
 
 		if len(blogPosts) == 0 {
-			http.Error(w, "somethin went wrong", http.StatusInternalServerError)
+			http.Error(w, "something went wrong", http.StatusInternalServerError)
 			return
 		}
 
